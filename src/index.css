@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card {
+  margin: 10vmin auto;
+  width: 70%;
+  height: 40vmin;
+}
+.h5 {
+  font-size: 2rem;
+  margin: auto 2vmin 0 0;
+}
+
+#next-qoute {
+  width: fit-content;
+  margin: 2vmin;
+}
+.social {
+  color: brown;
+  background-color: green;
+  border-color: ;
+}

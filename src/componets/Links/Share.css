@@ -1,0 +1,66 @@
+/* From uiverse.io by @fanishah */
+.button {
+  font-family: inherit;
+  font-weight: 400;
+  background: #f2295b;
+  color: white;
+  padding: 0.35em 0;
+  font-size: 17px;
+  border: none;
+  border-radius: 0.7em;
+  letter-spacing: 0.08em;
+  position: relative;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 4em;
+  width: 15em;
+  /* padding-left: 6rem;
+  padding-right: 0.7em; */
+  padding: 0 0.7em 0 6rem;
+}
+
+.button .icon {
+  background: #fff;
+  margin-right: 1em;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.5em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0.3em;
+  transition: all 0.7s;
+}
+
+.shere {
+  width: 1.3rem;
+  height: 1.3rem;
+  margin-left: 4px;
+}
+
+.button:hover .icon {
+  width: calc(100% - 0.6rem);
+}
+
+.button:hover .shere {
+  width: calc(100% - 0.6rem);
+  display: none;
+}
+
+.button .icon-shere {
+  color: #f2295b;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: none;
+}
+
+.button:hover .icon .icon-shere {
+  display: flex;
+}
+
+.send {
+  margin: 4rem 4rem 4rem 0;
+}
