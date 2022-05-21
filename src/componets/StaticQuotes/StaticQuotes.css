@@ -1,0 +1,30 @@
+/* StaticQuotes.css */
+.card {
+  margin: 10vmin auto;
+  width: 70%;
+  height: 40vmin;
+}
+.h5 {
+  font-size: 2rem;
+  margin: auto 2vmin 0 0;
+}
+
+#next-qoute {
+  width: fit-content;
+  margin: 2vmin;
+}
+#quote {
+  margin: 4vmin auto;
+  font-size: 1.4rem;
+  max-height: 2rem;
+}
+#Author {
+  width: 80%;
+}
+.position-absolute > button {
+  margin: 5px;
+}
+.end-0 {
+  right: 5px !important;
+}
+/* End of StaticQuotes.css */
