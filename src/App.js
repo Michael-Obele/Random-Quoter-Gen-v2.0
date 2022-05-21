@@ -1,6 +1,7 @@
+import { NavBar } from './componets/NavBar/NavBar';
 import { StaticQuotes } from './componets/StaticQuotes/StaticQuotes';
 import React, { useEffect, useState, useRef } from 'react';
-import Footer from './Footer';
+import Footer from './componets/Footer/Footer';
 
 function App() {
   const bColor = [
@@ -60,6 +61,7 @@ function App() {
   // End of Quotes
   return (
     <>
+      <NavBar />
       <StaticQuotes
         loading={loading}
         nextquote={nextquote}
