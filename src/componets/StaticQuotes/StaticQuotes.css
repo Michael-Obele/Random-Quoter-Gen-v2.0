@@ -1,4 +1,7 @@
 /* StaticQuotes.css */
+* {
+  transition: all 1.5s;
+}
 .card {
   margin: 10vmin auto;
   width: 70%;
