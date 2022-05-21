@@ -11,6 +11,7 @@ function Loading() {
       <span>I</span>
       <span>N</span>
       <span>G</span>
+      <span>!</span>
     </div>
   );
 }

@@ -7,7 +7,7 @@ export default function Footer() {
       className='text-center text-white fixed-bottom'
       style={{ backgroundColor: '#21081a' }}
     >
-      <div className='container p-4'></div>
+      {/* <div className='container p-4'></div> */}
 
       <div
         className='text-center p-3'

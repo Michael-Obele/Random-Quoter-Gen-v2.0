@@ -2,12 +2,11 @@
 .spinner {
   height: 50px;
   width: max-content;
-  margin: auto;
-  font-size: 18px;
+  margin: 50vh auto;
+  font-size: 38px;
   font-weight: 600;
   font-family: monospace;
   letter-spacing: 1em;
-  /* color: #de1c1c; */
   color: inherit;
   filter: drop-shadow(0 0 10px);
   display: flex;
@@ -41,6 +40,9 @@
 
 .spinner span:nth-child(7) {
   animation-delay: 1.5s;
+}
+.spinner span:nth-child(8) {
+  animation-delay: 1.75s;
 }
 
 @keyframes loading6454 {

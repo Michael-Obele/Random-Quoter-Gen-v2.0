@@ -11,7 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+/* Quotes.css */
 .card {
   margin: 10vmin auto;
   width: 70%;
@@ -26,8 +26,15 @@ code {
   width: fit-content;
   margin: 2vmin;
 }
-.social {
-  color: brown;
-  background-color: green;
-  border-color: ;
+#quote {
+  margin: 4vmin auto;
+  font-size: 1.4rem;
+  max-height: 2rem;
 }
+#Author {
+  width: 80%;
+}
+.position-absolute > button {
+  margin: 5px;
+}
+/* End of Quotes.css */
