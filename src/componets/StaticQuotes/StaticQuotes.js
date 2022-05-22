@@ -29,7 +29,7 @@ export function StaticQuotes({
   };
   const target = useRef(null);
   return (
-    <>
+    <div className='quote-body'>
       {loading ? (
         <Card className='justify-content-center'>
           <Card.Body>
@@ -38,74 +38,79 @@ export function StaticQuotes({
         </Card>
       ) : (
         <>
-          <Card className='justify-content-center'>
-            <div className='position-absolute top-0 end-0'>
+          <div className='quote-body' id='quote-body'>
+            <h1 className='text-center' id='quote-h1'>
+              Quotes...Next Quotes...More Quotes
+            </h1>
+            <Card id='quote-card'>
+              <div className='position-absolute bottom-0 end-0'>
+                <Button
+                  style={{
+                    backgroundColor: bcolor,
+                    color: text,
+                    borderColor: text,
+                  }}
+                  target='_blank'
+                  href={`https://twitter.com/intent/tweet?hashtags=quotes&related=Dev_Obele&text=“${zenquotes[count].q}”—${zenquotes[count].a}`}
+                  alt='share to twitter'
+                  aria-label='share to twitter'
+                >
+                  <FaTwitter />
+                </Button>
+                <Button
+                  style={{
+                    backgroundColor: bcolor,
+                    color: text,
+                    borderColor: text,
+                  }}
+                  alt='copy to clipboard'
+                  aria-label='copy to clipboard'
+                  ref={target}
+                  onClick={copyText}
+                >
+                  <FaClipboard />
+                </Button>
+                <Overlay target={target.current} show={show} placement='bottom'>
+                  {(props) => (
+                    <Tooltip id='overlay-example' {...props}>
+                      Copied
+                    </Tooltip>
+                  )}
+                </Overlay>
+                <Button
+                  style={{
+                    backgroundColor: bcolor,
+                    color: text,
+                    borderColor: text,
+                    fontSize: '17px',
+                  }}
+                  target='_blank'
+                  href={`whatsapp://send?text=“${zenquotes[count].q}”—${zenquotes[count].a}`}
+                  alt='share to whatsapp'
+                  aria-label='send to whatsapp'
+                >
+                  <BsWhatsapp />
+                </Button>
+              </div>
+              <Card.Body>
+                <Card.Title id='Author'>{zenquotes[count].a}</Card.Title>
+                <Card.Text id='quote'>{zenquotes[count].q}</Card.Text>
+              </Card.Body>
               <Button
+                id='next-qoute'
                 style={{
                   backgroundColor: bcolor,
                   color: text,
                   borderColor: text,
                 }}
-                target='_blank'
-                href={`https://twitter.com/intent/tweet?hashtags=quotes&related=Dev_Obele&text=“${zenquotes[count].q}”—${zenquotes[count].a}`}
-                alt='share to twitter'
-                aria-label='share to twitter'
+                onClick={nextquote}
               >
-                <FaTwitter />
+                Next Quote
               </Button>
-              <Button
-                style={{
-                  backgroundColor: bcolor,
-                  color: text,
-                  borderColor: text,
-                }}
-                alt='copy to clipboard'
-                aria-label='copy to clipboard'
-                ref={target}
-                onClick={copyText}
-              >
-                <FaClipboard />
-              </Button>
-              <Overlay target={target.current} show={show} placement='bottom'>
-                {(props) => (
-                  <Tooltip id='overlay-example' {...props}>
-                    Copied
-                  </Tooltip>
-                )}
-              </Overlay>
-              <Button
-                style={{
-                  backgroundColor: bcolor,
-                  color: text,
-                  borderColor: text,
-                  fontSize: '17px',
-                }}
-                target='_blank'
-                href={`whatsapp://send?text=“${zenquotes[count].q}”—${zenquotes[count].a}`}
-                alt='share to whatsapp'
-                aria-label='send to whatsapp'
-              >
-                <BsWhatsapp />
-              </Button>
-            </div>
-            <Card.Body>
-              <Card.Title id='Author'>{zenquotes[count].a}</Card.Title>
-              <Card.Text id='quote'>{zenquotes[count].q}</Card.Text>
-            </Card.Body>
-            <Button
-              id='next-qoute'
-              style={{
-                backgroundColor: bcolor,
-                color: text,
-                borderColor: text,
-              }}
-              onClick={nextquote}
-            >
-              Next Quote
-            </Button>
-          </Card>
+            </Card>
+          </div>
         </>
       )}
-    </>
+    </div>
   );
 }

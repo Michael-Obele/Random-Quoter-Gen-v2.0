@@ -1,9 +1,10 @@
 import React from 'react';
 import { MDBFooter } from 'mdb-react-ui-kit';
+import './Footer.css';
 
 export default function Footer() {
   return (
-    <MDBFooter className='text-center text-light fixed-bottom bg-dark'>
+    <MDBFooter className='text-center text-light bg-dark'>
       {/* <div className='container p-4'></div> */}
 
       <div className='text-center p-3 bg-dark'>

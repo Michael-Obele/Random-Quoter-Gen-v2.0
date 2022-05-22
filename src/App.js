@@ -1,3 +1,4 @@
+import { Header } from './componets/Header/Header';
 import { NavBar } from './componets/NavBar/NavBar';
 import { StaticQuotes } from './componets/StaticQuotes/StaticQuotes';
 import React, { useEffect, useState, useRef } from 'react';
@@ -39,12 +40,12 @@ function App() {
   // Quotes
   useEffect(() => {
     //set background color
-    document.body.style = `background: ${bColor[randNum]}`;
     fetch('https://type.fit/api/quotes')
       .then((res) => res.json())
       .then((json) => {
         setfreeQuote(json);
       });
+    document.body.style = `background: ${bColor[randNum]}`;
     return setcount(0);
   }, []);
   useEffect(() => {
@@ -62,6 +63,7 @@ function App() {
   return (
     <>
       <NavBar />
+      <Header />
       <StaticQuotes
         loading={loading}
         nextquote={nextquote}
