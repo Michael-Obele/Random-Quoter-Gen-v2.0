@@ -4,7 +4,7 @@ import './Header.css';
 export function Header({}) {
   return (
     <header>
-      <div className='fade-in'>
+      <div className=''>
         <h1 id='welcome'>Welcome to My Quote Generator App</h1>
         <h2>
           You can succeed after failure but you can't succeed after giving up.

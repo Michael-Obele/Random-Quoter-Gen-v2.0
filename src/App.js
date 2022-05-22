@@ -39,13 +39,13 @@ function App() {
 
   // Quotes
   useEffect(() => {
+    document.body.style = `background: ${bColor[randNum]}`;
     //set background color
     fetch('https://type.fit/api/quotes')
       .then((res) => res.json())
       .then((json) => {
         setfreeQuote(json);
       });
-    document.body.style = `background: ${bColor[randNum]}`;
     return setcount(0);
   }, []);
   useEffect(() => {
@@ -64,14 +64,16 @@ function App() {
     <>
       <NavBar />
       <Header />
-      <StaticQuotes
-        loading={loading}
-        nextquote={nextquote}
-        zenquotes={zenquotes}
-        count={count}
-        bcolor={bcolor}
-        text={text}
-      />
+      <div id='main' role='main'>
+        <StaticQuotes
+          loading={loading}
+          nextquote={nextquote}
+          zenquotes={zenquotes}
+          count={count}
+          bcolor={bcolor}
+          text={text}
+        />
+      </div>
       {/* <!-- Footer --> */}
       <Footer />
       {/* <!-- Footer --> */}

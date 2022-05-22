@@ -5,8 +5,9 @@ import Button from 'react-bootstrap/Button';
 import Overlay from 'react-bootstrap/Overlay';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Loading from '../Loading/Loading';
-import { FaTwitter, FaClipboard } from 'react-icons/fa';
-import { BsWhatsapp } from 'react-icons/bs';
+import { ReactComponent as Twitter } from './twitter.svg';
+import { ReactComponent as Whatsapp } from './whatsapp.svg';
+import { ReactComponent as Copy } from './ftcopy.svg';
 
 export function StaticQuotes({
   loading,
@@ -55,7 +56,7 @@ export function StaticQuotes({
                   alt='share to twitter'
                   aria-label='share to twitter'
                 >
-                  <FaTwitter />
+                  <Twitter />
                 </Button>
                 <Button
                   style={{
@@ -68,7 +69,7 @@ export function StaticQuotes({
                   ref={target}
                   onClick={copyText}
                 >
-                  <FaClipboard />
+                  <Copy />
                 </Button>
                 <Overlay target={target.current} show={show} placement='bottom'>
                   {(props) => (
@@ -89,7 +90,7 @@ export function StaticQuotes({
                   alt='share to whatsapp'
                   aria-label='send to whatsapp'
                 >
-                  <BsWhatsapp />
+                  <Whatsapp />
                 </Button>
               </div>
               <Card.Body>
