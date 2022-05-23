@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import './NavBar.css';
 import Container from 'react-bootstrap/Container';
 
-export function NavBar() {
+export default function NavBar() {
   return (
     <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark' fixed='top'>
       <Container>
@@ -16,7 +16,7 @@ export function NavBar() {
             <Nav.Link eventKey={1} href='#quote-h1' aria-label='quotes'>
               Quotes
             </Nav.Link>
-            <Nav.Link eventKey={2} href='#memes'>
+            <Nav.Link eventKey={2} href='#searchQuotes'>
               Search Quotes
             </Nav.Link>
           </Nav>

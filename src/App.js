@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Header } from './componets/Header/Header';
-import { NavBar } from './componets/NavBar/NavBar';
-import { StaticQuotes } from './componets/StaticQuotes/StaticQuotes';
+import Header from './componets/Header/Header';
+import NavBar from './componets/NavBar/NavBar';
+import StaticQuotes from './componets/StaticQuotes/StaticQuotes';
 import Footer from './componets/Footer/Footer';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
@@ -34,25 +31,44 @@ function App() {
   const [zenquotes, setZenquotes] = useState();
   const [count, setcount] = useState(0);
   const [bcolor, setbcolor] = useState(bColor[randNum]);
+  const [display, setdisplay] = useState(false);
   const [text, setText] = useState('black');
+  const [searchvalue, setsearchvalue] = useState('');
 
   const nextquote = () => {
-    setcount(count + 1);
+    setcount((state) => state + 1);
     setrandNum(Math.floor(Math.random() * bColor.length));
     setbcolor(bColor[randNum]);
     document.body.style = `background: ${bColor[randNum]}`;
   };
+  const allquotes = () => {
+    var arr = [],
+      auth = [];
+    if (freeQuote || zenquotes) {
+      console.log('Working');
+      arr.push(freeQuote);
+      arr.push(zenquotes);
+      setdisplay(true);
+    }
+    // arr[0].map((x) => auth.push(x.author));
+    // arr[1].map((x) => auth.push(x.a));
+    // console.log(auth);
+    // return <option value='Sanday' />;
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      console.log(searchvalue);
+    }
+  };
 
   // Quotes
   useEffect(() => {
-    document.body.style = `background: ${bColor[randNum]}`;
-    //set background color
     fetch('https://type.fit/api/quotes')
       .then((res) => res.json())
       .then((json) => {
         setfreeQuote(json);
+        document.body.style = `background: ${bColor[randNum]}`;
       });
-    return setcount(0);
   }, []);
   useEffect(() => {
     fetch(
@@ -64,7 +80,7 @@ function App() {
         setLoading(false);
       });
     return setcount(0);
-  }, [count === 49]);
+  }, [count === 4]);
   // End of Quotes
   return (
     <>
@@ -82,16 +98,30 @@ function App() {
       </div>
       <div>
         <Container id='searchQuotes'>
-          <InputGroup className='mb-3'>
-            <FormControl
-              placeholder="Recipient's username"
-              aria-label="Recipient's username"
-              aria-describedby='basic-addon2'
+          <div id='search'>
+            <label htmlFor='search-quote' className='form-label'>
+              Search For Quotes
+            </label>
+            <input
+              className='form-control'
+              list='datalistOptions'
+              id='search-quote'
+              placeholder='Type to search...'
+              onClick={() => setdisplay(true)}
+              onChange={(e) => setsearchvalue(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
-            <Button variant='outline-secondary' id='button-addon2'>
-              Button
-            </Button>
-          </InputGroup>
+            <datalist id='datalistOptions'>
+              {display ? (
+                <>
+                  <option value='San Francisco' />
+                  {zenquotes.map((x, i) => (
+                    <option key={i} value={x.a} />
+                  ))}
+                </>
+              ) : null}
+            </datalist>
+          </div>
           <Card>
             <Card.Header>Featured</Card.Header>
             <ListGroup variant='flush'>

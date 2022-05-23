@@ -3,7 +3,7 @@ import './Loading.css';
 
 function Loading() {
   return (
-    <div class='spinner'>
+    <div className='spinner'>
       <span>L</span>
       <span>O</span>
       <span>A</span>

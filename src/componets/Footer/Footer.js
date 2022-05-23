@@ -9,9 +9,10 @@ export default function Footer() {
 
       <div className='text-center p-3 bg-dark'>
         © {new Date().getFullYear()} Copyright:
-        <a className='text-light' href='https://moaconcept.xyz/'>
+        <a className='text-light logoName' href='https://moaconcept.xyz/'>
           MiChaelIsh
-        </a>
+        </a>{' '}
+        made with ❤️
       </div>
     </MDBFooter>
   );

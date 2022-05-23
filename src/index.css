@@ -15,7 +15,17 @@ code {
 
 /* SearchQuotes.js */
 #searchQuotes {
-  width: 90vw;
+  width: 100%;
+  margin: auto;
 }
-
+.form-label {
+  font-size: calc(20px + (50 - 20) * ((100vw - 300px) / (1600 - 300)));
+}
+#searchQuotes #search {
+  width: 80%;
+  margin: auto;
+}
+#searchQuotes .card {
+  margin: 2vmax;
+}
 /* End of  SearchQuotes.js */

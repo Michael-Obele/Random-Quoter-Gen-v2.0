@@ -1,5 +1,5 @@
 /* StaticQuotes.css */
-.card {
+.quote-body > .card {
   margin: 10vmin auto;
   width: 80%;
   height: calc(35vh + (80 - 35) * ((100vw - 300px) / (1600 - 300)));
@@ -9,7 +9,8 @@
   -moz-box-shadow: 14px 19px 10px 0px #00000040;
 }
 .card * {
-  transition: all 2s;
+  transition: color 2s;
+  transition: background-color 2s;
 }
 .h5 {
   /* font-size: 2rem; */
@@ -20,10 +21,12 @@
   width: calc(20vw + (30 - 20) * ((100vw - 300px) / (1600 - 300)));
   font-size: calc(8px + (26 - 8) * ((100vw - 300px) / (1600 - 300)));
   height: auto;
-  margin: 0 1vw 1vh;
+  padding: calc(8px + (10 - 8) * ((100vw - 300px) / (1600 - 300)));
+  margin: calc(2px + (10 - 2) * ((100vw - 300px) / (1600 - 300)));
 }
 #quote {
   margin: 4vmin auto;
+  text-align: center;
   font-size: calc(14px + (30 - 14) * ((100vw - 300px) / (1600 - 300)));
   max-height: 2rem;
 }
@@ -35,12 +38,15 @@
 }
 #Author {
   width: 100%;
+  text-align: center;
   font-size: calc(16px + (50 - 14) * ((100vw - 300px) / (1600 - 300)));
 }
 .position-absolute > .btn {
-  margin: 5px;
+  margin: calc(2px + (8 - 2) * ((100vw - 300px) / (1600 - 300)));
+  margin-bottom: calc(2px + (10 - 2) * ((100vw - 300px) / (1600 - 300)));
   height: auto;
-  font-size: calc(8px + (15 - 8) * ((100vw - 300px) / (1600 - 300))) !important;
+  font-size: calc(2px + (20 - 2) * ((100vw - 300px) / (1600 - 300))) !important;
+  color: white;
 }
 .end-0 {
   right: 5px !important;

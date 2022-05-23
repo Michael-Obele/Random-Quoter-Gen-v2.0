@@ -29,9 +29,9 @@ header h1 {
   font-family: 'Lato';
 }
 header h2 {
-  border-bottom: 2px solid #000000;
-  border-top: 2px solid #000000;
-  color: #000000;
+  border-bottom: 2px solid #ffffff;
+  border-top: 2px solid #ffffff;
+  color: #ffffff;
   font-family: 'Amatic SC', cursive;
   padding-top: calc(2.5vh + (20.5 - 2.5) * ((100vw - 300px) / (1600 - 300)));
   font-size: calc(2rem + (50 - 2) * ((100vw - 300px) / (1600 - 300)));
@@ -42,7 +42,7 @@ header h2 {
 header h3 {
   color: #ffffff;
   font-family: 'Abril Fatface', cursive;
-  font-size: calc(2rem + (20 - 2) * ((100vw - 300px) / (1600 - 300)));
+  font-size: calc(25px + (80 - 25) * ((100vw - 300px) / (1600 - 300)));
   font-style: italic;
   font-weight: 100;
   margin: 0;
