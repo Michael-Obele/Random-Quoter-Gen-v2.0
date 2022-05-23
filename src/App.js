@@ -1,8 +1,14 @@
+import React, { useEffect, useState } from 'react';
 import { Header } from './componets/Header/Header';
 import { NavBar } from './componets/NavBar/NavBar';
 import { StaticQuotes } from './componets/StaticQuotes/StaticQuotes';
-import React, { useEffect, useState, useRef } from 'react';
 import Footer from './componets/Footer/Footer';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
 
 function App() {
   const bColor = [
@@ -50,7 +56,7 @@ function App() {
   }, []);
   useEffect(() => {
     fetch(
-      'https://young-gorge-47284.herokuapp.com/https://zenquotes.io/api/quotes/'
+      'https://moa-redirect-cors.herokuapp.com/https://zenquotes.io/api/quotes/'
     )
       .then((res) => res.json())
       .then((json) => {
@@ -74,9 +80,35 @@ function App() {
           text={text}
         />
       </div>
-      {/* <!-- Footer --> */}
+      <div>
+        <Container id='searchQuotes'>
+          <InputGroup className='mb-3'>
+            <FormControl
+              placeholder="Recipient's username"
+              aria-label="Recipient's username"
+              aria-describedby='basic-addon2'
+            />
+            <Button variant='outline-secondary' id='button-addon2'>
+              Button
+            </Button>
+          </InputGroup>
+          <Card>
+            <Card.Header>Featured</Card.Header>
+            <ListGroup variant='flush'>
+              <ListGroup.Item>
+                {' '}
+                <blockquote className='blockquote mb-0'>
+                  <p> Search in the text box and see quote from... </p>
+                  <footer className='blockquote-footer'>Someone famous</footer>
+                </blockquote>
+              </ListGroup.Item>
+              <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+              <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+            </ListGroup>
+          </Card>
+        </Container>
+      </div>
       <Footer />
-      {/* <!-- Footer --> */}
     </>
   );
 }

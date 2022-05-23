@@ -12,3 +12,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* SearchQuotes.js */
+#searchQuotes {
+  width: 90vw;
+}
+
+/* End of  SearchQuotes.js */
