@@ -32,6 +32,7 @@ function App() {
   const [count, setcount] = useState(0);
   const [bcolor, setbcolor] = useState(bColor[randNum]);
   const [display, setdisplay] = useState(false);
+  const [result, setresult] = useState(false);
   const [text, setText] = useState('black');
   const [searchvalue, setsearchvalue] = useState('');
 
@@ -41,23 +42,21 @@ function App() {
     setbcolor(bColor[randNum]);
     document.body.style = `background: ${bColor[randNum]}`;
   };
-  const allquotes = () => {
-    var arr = [],
-      auth = [];
-    if (freeQuote || zenquotes) {
-      console.log('Working');
-      arr.push(freeQuote);
-      arr.push(zenquotes);
-      setdisplay(true);
+  const [allAuthors, setallAuthors] = useState();
+  var pushAuth = (auth) => {
+    var arr = [];
+    if (auth[0].author !== undefined) {
+      auth.map((x) => arr.push(x.author));
     }
-    // arr[0].map((x) => auth.push(x.author));
-    // arr[1].map((x) => auth.push(x.a));
-    // console.log(auth);
-    // return <option value='Sanday' />;
+    if (auth[0].a !== undefined) {
+      auth.map((x) => arr.push(x.a));
+    }
+    console.log(arr);
   };
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       console.log(searchvalue);
+      setresult(true);
     }
   };
 
@@ -67,6 +66,7 @@ function App() {
       .then((res) => res.json())
       .then((json) => {
         setfreeQuote(json);
+        pushAuth(json);
         document.body.style = `background: ${bColor[randNum]}`;
       });
   }, []);
@@ -77,10 +77,11 @@ function App() {
       .then((res) => res.json())
       .then((json) => {
         setZenquotes(json);
+        pushAuth(json);
         setLoading(false);
       });
     return setcount(0);
-  }, [count === 4]);
+  }, [count === 48]);
   // End of Quotes
   return (
     <>
@@ -110,17 +111,20 @@ function App() {
               onClick={() => setdisplay(true)}
               onChange={(e) => setsearchvalue(e.target.value)}
               onKeyDown={handleKeyDown}
+              autoComplete='none'
             />
-            <datalist id='datalistOptions'>
-              {display ? (
-                <>
-                  <option value='San Francisco' />
+            {display ? (
+              <>
+                <datalist id='datalistOptions'>
                   {zenquotes.map((x, i) => (
                     <option key={i} value={x.a} />
                   ))}
-                </>
-              ) : null}
-            </datalist>
+                  {freeQuote.map((x, i) => (
+                    <option key={i} value={x.author} />
+                  ))}
+                </datalist>
+              </>
+            ) : null}
           </div>
           <Card>
             <Card.Header>Featured</Card.Header>
@@ -132,8 +136,6 @@ function App() {
                   <footer className='blockquote-footer'>Someone famous</footer>
                 </blockquote>
               </ListGroup.Item>
-              <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-              <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
             </ListGroup>
           </Card>
         </Container>

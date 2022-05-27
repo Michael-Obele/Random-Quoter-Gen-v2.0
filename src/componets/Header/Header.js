@@ -4,12 +4,12 @@ import './Header.css';
 export default function Header({}) {
   return (
     <header>
-      <div className=''>
+      <div className='image-container '>
         <h1 id='welcome'>Welcome to My Quote Generator App</h1>
-        <h2>
+        <h2 className='text'>
           You can succeed after failure but you can't succeed after giving up.
         </h2>
-        <h3>There's no shame in losing, only in accepting defeat!</h3>
+        {/* <h3>There's no shame in losing, only in accepting defeat!</h3> */}
       </div>
     </header>
   );

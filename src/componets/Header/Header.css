@@ -1,11 +1,11 @@
 /* Header.css */
-header {
+/* header {
   height: 100vh;
   position: relative;
   padding: 28px;
   text-align: center;
-}
-header:before {
+} */
+/* header:before {
   background: linear-gradient(#a500eb86, #5128c427),
     url('./photo-compressed.jpg');
   background-attachment: fixed;
@@ -22,9 +22,9 @@ header:before {
   right: 0;
   top: 0;
   z-index: -1;
-}
+} */
 header h1 {
-  padding: 15vh 0 0 0;
+  padding: 10vh 0 0 0;
   color: #ffffff;
   font-family: 'Lato';
 }
@@ -37,7 +37,7 @@ header h2 {
   font-size: calc(2rem + (50 - 2) * ((100vw - 300px) / (1600 - 300)));
   height: 40vh;
   margin: 0;
-  z-index: 1;
+  /* z-index: 1; */
 }
 header h3 {
   color: #ffffff;
@@ -46,60 +46,34 @@ header h3 {
   font-style: italic;
   font-weight: 100;
   margin: 0;
-  z-index: 1;
+  /* z-index: 1; */
 }
 
-/* Fade-in */
-
-.fade-in {
-  animation: fadeIn ease 5s;
-  -webkit-animation: fadeIn ease 5s;
-  -moz-animation: fadeIn ease 5s;
-  -o-animation: fadeIn ease 5s;
-  -ms-animation: fadeIn ease 5s;
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+.image-container {
+  background: linear-gradient(#a500eb86, #5128c427),
+    url('./photo-compressed.jpg'); /* The image used - important! */
+  background-size: cover;
+  position: relative; /* Needed to position the cutout text in the middle of the image */
+  height: 100vh;
+  position: relative;
+  padding: 28px;
+  text-align: center;
 }
 
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+.text {
+  background-color: white;
+  color: black;
+  /* font-size: 1vw; Responsive font size */
+  font-weight: bold;
+  margin: 0 auto; /* Center the text container */
+  padding: 10px;
+  width: 80%;
+  height: 50%;
+  text-align: center; /* Center text */
+  position: absolute; /* Position text */
+  top: 50%; /* Position text in the middle */
+  left: 50%; /* Position text in the middle */
+  transform: translate(-50%, -50%); /* Position text in the middle */
+  mix-blend-mode: screen; /* This makes the cutout text possible */
 }
 /* End of Header.css */
