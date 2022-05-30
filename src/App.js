@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Header from './componets/Header/Header';
-import NavBar from './componets/NavBar/NavBar';
-import StaticQuotes from './componets/StaticQuotes/StaticQuotes';
-import Footer from './componets/Footer/Footer';
+import Header from './components/Header/Header';
+import NavBar from './components/NavBar/NavBar';
+import StaticQuotes from './components/StaticQuotes/StaticQuotes';
+import Footer from './components/Footer/Footer';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
@@ -22,27 +22,26 @@ function App() {
     '#b79ced',
     '#c879ff',
   ];
-
+  const [allAuthors, setAllAuthors] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [freeQuote, setfreeQuote] = useState();
-  const [randNum, setrandNum] = useState(
+  const [freeQuote, setFreeQuote] = useState();
+  const [randNum, setRandNum] = useState(
     Math.floor(Math.random() * bColor.length) + 1
   );
   const [zenquotes, setZenquotes] = useState();
-  const [count, setcount] = useState(0);
-  const [bcolor, setbcolor] = useState(bColor[randNum]);
-  const [display, setdisplay] = useState(false);
-  const [result, setresult] = useState(false);
+  const [count, setCount] = useState(0);
+  const [bcolor, setBcolor] = useState(bColor[randNum]);
+  const [display, setDisplay] = useState(false);
+  const [result, setResult] = useState(false);
   const [text, setText] = useState('black');
-  const [searchvalue, setsearchvalue] = useState('');
+  const [searchvalue, setSearchvalue] = useState('');
 
-  const nextquote = () => {
-    setcount((state) => state + 1);
-    setrandNum(Math.floor(Math.random() * bColor.length));
-    setbcolor(bColor[randNum]);
+  const nextQuote = () => {
+    setCount((state) => state + 1);
+    setRandNum(Math.floor(Math.random() * bColor.length));
+    setBcolor(bColor[randNum]);
     document.body.style = `background: ${bColor[randNum]}`;
   };
-  const [allAuthors, setallAuthors] = useState();
   var pushAuth = (auth) => {
     var arr = [];
     if (auth[0].author !== undefined) {
@@ -51,12 +50,10 @@ function App() {
     if (auth[0].a !== undefined) {
       auth.map((x) => arr.push(x.a));
     }
-    console.log(arr);
   };
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
-      console.log(searchvalue);
-      setresult(true);
+      setResult(true);
     }
   };
 
@@ -65,7 +62,7 @@ function App() {
     fetch('https://type.fit/api/quotes')
       .then((res) => res.json())
       .then((json) => {
-        setfreeQuote(json);
+        setFreeQuote(json);
         pushAuth(json);
         document.body.style = `background: ${bColor[randNum]}`;
       });
@@ -80,9 +77,21 @@ function App() {
         pushAuth(json);
         setLoading(false);
       });
-    return setcount(0);
+    return setCount(0);
   }, [count === 48]);
   // End of Quotes
+  useEffect(() => {
+    if (!loading) {
+      setAllAuthors([freeQuote, zenquotes]);
+    }
+    return () => {
+      console.log('allAuthors');
+    };
+  }, [zenquotes]);
+  if (result) {
+    console.log(allAuthors);
+  }
+
   return (
     <>
       <NavBar />
@@ -90,7 +99,7 @@ function App() {
       <div id='main' role='main'>
         <StaticQuotes
           loading={loading}
-          nextquote={nextquote}
+          nextQuote={nextQuote}
           zenquotes={zenquotes}
           count={count}
           bcolor={bcolor}
@@ -108,8 +117,8 @@ function App() {
               list='datalistOptions'
               id='search-quote'
               placeholder='Type to search...'
-              onClick={() => setdisplay(true)}
-              onChange={(e) => setsearchvalue(e.target.value)}
+              onClick={() => setDisplay(true)}
+              onChange={(e) => setSearchvalue(e.target.value)}
               onKeyDown={handleKeyDown}
               autoComplete='none'
             />
@@ -129,13 +138,23 @@ function App() {
           <Card>
             <Card.Header>Featured</Card.Header>
             <ListGroup variant='flush'>
-              <ListGroup.Item>
-                {' '}
-                <blockquote className='blockquote mb-0'>
-                  <p> Search in the text box and see quote from... </p>
-                  <footer className='blockquote-footer'>Someone famous</footer>
-                </blockquote>
-              </ListGroup.Item>
+              {!result ? (
+                <ListGroup.Item>
+                  <blockquote className='blockquote mb-0'>
+                    <p> Search in the text box and see quote from... </p>
+                    <footer className='blockquote-footer'>
+                      Someone famous
+                    </footer>
+                  </blockquote>
+                </ListGroup.Item>
+              ) : (
+                <ListGroup.Item>
+                  <blockquote className='blockquote mb-0'>
+                    <p>Working</p>
+                    <footer className='blockquote-footer'>For now!</footer>
+                  </blockquote>
+                </ListGroup.Item>
+              )}
             </ListGroup>
           </Card>
         </Container>

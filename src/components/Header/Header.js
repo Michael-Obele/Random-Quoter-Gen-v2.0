@@ -5,10 +5,10 @@ export default function Header({}) {
   return (
     <header>
       <div className='image-container '>
-        <h1 id='welcome'>Welcome to My Quote Generator App</h1>
-        <h2 className='text'>
+        {/* <h1 id='welcome'>Welcome to My Quote Generator App</h1> */}
+        <h1 className='text'>
           You can succeed after failure but you can't succeed after giving up.
-        </h2>
+        </h1>
         {/* <h3>There's no shame in losing, only in accepting defeat!</h3> */}
       </div>
     </header>

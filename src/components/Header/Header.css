@@ -23,7 +23,7 @@
   top: 0;
   z-index: -1;
 } */
-header h1 {
+/* header h1 {
   padding: 10vh 0 0 0;
   color: #ffffff;
   font-family: 'Lato';
@@ -37,7 +37,6 @@ header h2 {
   font-size: calc(2rem + (50 - 2) * ((100vw - 300px) / (1600 - 300)));
   height: 40vh;
   margin: 0;
-  /* z-index: 1; */
 }
 header h3 {
   color: #ffffff;
@@ -46,8 +45,7 @@ header h3 {
   font-style: italic;
   font-weight: 100;
   margin: 0;
-  /* z-index: 1; */
-}
+} */
 
 .image-container {
   background: linear-gradient(#a500eb86, #5128c427),
@@ -64,6 +62,7 @@ header h3 {
   background-color: white;
   color: black;
   /* font-size: 1vw; Responsive font size */
+  font-size: calc(25px + (110 - 25) * ((100vw - 300px) / (1600 - 300)));
   font-weight: bold;
   margin: 0 auto; /* Center the text container */
   padding: 10px;
