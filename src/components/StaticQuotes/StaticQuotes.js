@@ -98,7 +98,7 @@ export default function StaticQuotes({
                 <Card.Text id='quote'>{zenquotes[count].q}</Card.Text>
               </Card.Body>
               <Button
-                id='next-qoute'
+                id='next-quote'
                 style={{
                   backgroundColor: bcolor,
                   color: text,

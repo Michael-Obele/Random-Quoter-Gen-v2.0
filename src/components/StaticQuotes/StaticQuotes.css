@@ -17,7 +17,7 @@
   margin: auto 2vmin 0 0;
 }
 
-#next-qoute {
+#next-quote {
   width: calc(20vw + (30 - 20) * ((100vw - 300px) / (1600 - 300)));
   font-size: calc(8px + (26 - 8) * ((100vw - 300px) / (1600 - 300)));
   height: auto;
