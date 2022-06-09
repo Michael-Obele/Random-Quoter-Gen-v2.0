@@ -11,7 +11,7 @@ import { ReactComponent as Copy } from './copy.svg';
 
 export default function StaticQuotes({
   loading,
-  nextquote,
+  nextQuote,
   zenquotes,
   count,
   bcolor,
@@ -104,7 +104,7 @@ export default function StaticQuotes({
                   color: text,
                   borderColor: text,
                 }}
-                onClick={nextquote}
+                onClick={nextQuote}
               >
                 Next Quote
               </Button>

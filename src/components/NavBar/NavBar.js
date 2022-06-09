@@ -16,9 +16,9 @@ export default function NavBar() {
             <Nav.Link eventKey={1} href='#quote-h1' aria-label='quotes'>
               Quotes
             </Nav.Link>
-            <Nav.Link eventKey={2} href='#searchQuotes'>
+            {/* <Nav.Link eventKey={2} href='#searchQuotes'>
               Search Quotes
-            </Nav.Link>
+            </Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Header from './components/Header/Header';
 import NavBar from './components/NavBar/NavBar';
 import StaticQuotes from './components/StaticQuotes/StaticQuotes';
-import Footer from './components/Footer/Footer';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
 
 function App() {
   const bColor = [
@@ -95,7 +90,6 @@ function App() {
   return (
     <>
       <NavBar />
-      <Header />
       <div id='main' role='main'>
         <StaticQuotes
           loading={loading}
@@ -106,60 +100,6 @@ function App() {
           text={text}
         />
       </div>
-      <div>
-        <Container id='searchQuotes'>
-          <div id='search'>
-            <label htmlFor='search-quote' className='form-label'>
-              Search For Quotes
-            </label>
-            <input
-              className='form-control'
-              list='datalistOptions'
-              id='search-quote'
-              placeholder='Type to search...'
-              onClick={() => setDisplay(true)}
-              onChange={(e) => setSearchvalue(e.target.value)}
-              onKeyDown={handleKeyDown}
-              autoComplete='none'
-            />
-            {display ? (
-              <>
-                <datalist id='datalistOptions'>
-                  {zenquotes.map((x, i) => (
-                    <option key={i} value={x.a} />
-                  ))}
-                  {freeQuote.map((x, i) => (
-                    <option key={i} value={x.author} />
-                  ))}
-                </datalist>
-              </>
-            ) : null}
-          </div>
-          <Card>
-            <Card.Header>Featured</Card.Header>
-            <ListGroup variant='flush'>
-              {!result ? (
-                <ListGroup.Item>
-                  <blockquote className='blockquote mb-0'>
-                    <p> Search in the text box and see quote from... </p>
-                    <footer className='blockquote-footer'>
-                      Someone famous
-                    </footer>
-                  </blockquote>
-                </ListGroup.Item>
-              ) : (
-                <ListGroup.Item>
-                  <blockquote className='blockquote mb-0'>
-                    <p>Working</p>
-                    <footer className='blockquote-footer'>For now!</footer>
-                  </blockquote>
-                </ListGroup.Item>
-              )}
-            </ListGroup>
-          </Card>
-        </Container>
-      </div>
-      <Footer />
     </>
   );
 }
