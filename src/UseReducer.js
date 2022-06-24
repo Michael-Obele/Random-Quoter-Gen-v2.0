@@ -1,4 +1,5 @@
 import { bColor } from './Colors';
+var quoteArrays = [];
 
 export const initialState = {
   count: 0,
@@ -6,14 +7,17 @@ export const initialState = {
   text: 'black',
   randNum: Math.floor(Math.random() * bColor.length) + 1,
   Darkmode: false,
+  freeQuote: [],
+  zenquotes: [],
 };
 export const Actions = {
   INCREMENT: 'INCREMENT',
   LOADING: 'LOADING',
   RESET: 'RESET',
   RANDOM: 'RANDOM',
-  ALLQUOTES: 'ALLQUOTES',
+  ADDQUOTES: 'ADDQUOTES',
   SWITCHMODE: 'SWITCHMODE',
+  MERGEQUOTES: 'MERGEQUOTES',
 };
 
 export const reducer = (state = initialState, action) => {
@@ -27,8 +31,16 @@ export const reducer = (state = initialState, action) => {
     case Actions.RANDOM:
       return { ...state, randNum: action.payload };
     case Actions.SWITCHMODE:
-      return { ...state, Darkmode: !state.Darkmode };
+      return {
+        ...state,
+        Darkmode: !state.Darkmode,
+        text: state.Darkmode ? 'black' : 'white',
+      };
+    case Actions.ADDQUOTES:
+      return { ...state, [action.name]: action.payload };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
 };
+
+console.log(quoteArrays);

@@ -44,7 +44,13 @@ export default function StaticQuotes({
       ) : (
         <>
           <div className='quote-body' id='quote-body'>
-            <h1 className='text-center' id='quote-h1'>
+            <h1
+              style={{
+                color: text,
+              }}
+              className='text-center'
+              id='quote-h1'
+            >
               Quotes...Next Quotes...More Quotes
             </h1>
             <Card bg={bg} text={ctext} id='quote-card'>
