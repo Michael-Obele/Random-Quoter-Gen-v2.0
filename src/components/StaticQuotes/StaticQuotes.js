@@ -5,7 +5,8 @@ import Button from 'react-bootstrap/Button';
 import Overlay from 'react-bootstrap/Overlay';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Loading from '../Loading/Loading';
-import { FaWhatsapp, FaTwitter, FaRegCopy } from 'react-icons/fa';
+import { FaTwitter, FaCopy } from 'react-icons/fa';
+import { IoLogoWhatsapp } from 'react-icons/io';
 import {
   IoArrowForwardCircleSharp,
   IoArrowBackCircleSharp,
@@ -62,7 +63,7 @@ export default function StaticQuotes({
                   style={{
                     backgroundColor: bcolor,
                     color: text,
-                    borderColor: text,
+                    bordercolor: text,
                   }}
                   target='_blank'
                   href={`https://twitter.com/intent/tweet?hashtags=quotes&related=Dev_Obele&text=“${zenquotes[count].q}”—${zenquotes[count].a}`}
@@ -75,14 +76,14 @@ export default function StaticQuotes({
                   style={{
                     backgroundColor: bcolor,
                     color: text,
-                    borderColor: text,
+                    bordercolor: text,
                   }}
                   alt='copy to clipboard'
                   aria-label='copy to clipboard'
                   ref={target}
                   onClick={copyText}
                 >
-                  <FaRegCopy />
+                  <FaCopy />
                 </Button>
                 <Overlay target={target.current} show={show} placement='bottom'>
                   {(props) => (
@@ -95,7 +96,7 @@ export default function StaticQuotes({
                   style={{
                     backgroundColor: bcolor,
                     color: text,
-                    borderColor: text,
+                    bordercolor: text,
                     fontSize: '17px',
                   }}
                   target='_blank'
@@ -103,33 +104,33 @@ export default function StaticQuotes({
                   alt='share to whatsapp'
                   aria-label='send to whatsapp'
                 >
-                  <FaWhatsapp />
+                  <IoLogoWhatsapp />
                 </Button>
               </div>
               <Card.Body>
                 <Card.Title id='Author'>{zenquotes[count].a}</Card.Title>
                 <Card.Text id='quote'>{zenquotes[count].q}</Card.Text>
               </Card.Body>
-              <div class='position-absolute bottom-0 start-0'>
+              <div className='position-absolute bottom-0 start-0'>
                 <Button
                   id='next-quote'
                   style={{
                     backgroundColor: bcolor,
                     color: text,
-                    borderColor: text,
+                    bordercolor: text,
                   }}
                   onClick={prevQuote}
                 >
                   Previous Quote
                 </Button>
               </div>
-              <div class='position-absolute bottom-0 end-0'>
+              <div className='position-absolute bottom-0 end-0'>
                 <Button
                   id='next-quote'
                   style={{
                     backgroundColor: bcolor,
                     color: text,
-                    borderColor: text,
+                    bordercolor: text,
                   }}
                   onClick={nextQuote}
                 >

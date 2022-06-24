@@ -5,10 +5,12 @@ export const initialState = {
   count: 0,
   loading: true,
   text: 'black',
-  randNum: Math.floor(Math.random() * bColor.length) + 1,
+  randNum: Math.floor(Math.random() * bColor.length),
   Darkmode: false,
+  Authors: [],
   freeQuote: [],
   zenquotes: [],
+  AllQuotes: [],
 };
 export const Actions = {
   INCREMENT: 'INCREMENT',
@@ -19,6 +21,7 @@ export const Actions = {
   ADDQUOTES: 'ADDQUOTES',
   SWITCHMODE: 'SWITCHMODE',
   MERGEQUOTES: 'MERGEQUOTES',
+  SETAUTHORS: 'SETAUTHORS',
 };
 
 export const reducer = (state = initialState, action) => {
@@ -41,6 +44,8 @@ export const reducer = (state = initialState, action) => {
       };
     case Actions.ADDQUOTES:
       return { ...state, [action.name]: action.payload };
+    case Actions.SETAUTHORS:
+      return { ...state, Authors: state.Authors.concat(action.payload) };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }

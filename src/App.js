@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useReducer } from 'react';
 import { bColor } from './Colors';
+import { FaSearch } from 'react-icons/fa';
 import NavBar from './components/NavBar/NavBar';
 import StaticQuotes from './components/StaticQuotes/StaticQuotes';
 import Footer from './components/Footer/Footer';
@@ -10,15 +11,45 @@ import * as red from './UseReducer';
 
 function App() {
   const [bcolor, setBcolor] = useState(bColor[red.initialState.randNum]);
+  const [authors, setAuthors] = useState([]);
+  const [value, setValue] = useState('');
   const [display, setDisplay] = useState(false);
   const [state, dispatch] = useReducer(red.reducer, red.initialState);
+  /*End of States*/
+  useEffect(() => {
+    if (!state.loading) {
+      state.freeQuote.map((quote) => {
+        dispatch({
+          type: red.Actions.SETAUTHORS,
+          payload: quote.author,
+        });
+      });
+      state.zenquotes.map((quote) => {
+        dispatch({
+          type: red.Actions.SETAUTHORS,
+          payload: quote.a,
+        });
+      });
+    }
+  }, [state.loading]);
+
+  useEffect(() => {
+    if (state.Authors.length > 0) {
+      var set = new Set(state.Authors);
+      setAuthors(Array.from(set));
+      setDisplay(true);
+    }
+  }, [state.Authors]);
+
   const changeColor = () => {
     dispatch({
       type: red.Actions.RANDOM,
-      payload: Math.floor(Math.random() * bColor.length) + 1,
+      payload: Math.floor(Math.random() * bColor.length),
     });
     setBcolor(bColor[state.randNum]);
-    document.body.style = `background: ${bColor[state.randNum]}`;
+    if (bColor[state.randNum] !== undefined) {
+      document.body.style = `background: ${bColor[state.randNum]}`;
+    }
   };
 
   const prevQuote = () => {
@@ -36,8 +67,13 @@ function App() {
   const SwitchMode = () => {
     dispatch({ type: red.Actions.SWITCHMODE });
   };
+  const search = () => {
+    console.log(value);
+  };
 
-  console.log(state);
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
 
   // Quotes
   useEffect(() => {
@@ -72,7 +108,6 @@ function App() {
   return (
     <>
       <NavBar Darkmode={state.Darkmode} SwitchMode={SwitchMode} />
-      {/* <Header /> */}
       <div id='main' role='main'>
         <StaticQuotes
           loading={state.loading}
@@ -91,18 +126,32 @@ function App() {
             <label htmlFor='search-quote' className='form-label'>
               Search For Quotes
             </label>
-            <input
-              className='form-control'
-              list='datalistOptions'
-              id='search-quote'
-              placeholder='Type to search...'
-              autoComplete='none'
-            />
-            {display ? (
-              <>
-                <datalist id='datalistOptions'></datalist>
-              </>
-            ) : null}
+            <div className='input-group flex-nowrap'>
+              <input
+                className='form-control'
+                onChange={(e) => setValue(e.target.value)}
+                value={value}
+                list='authors'
+                id='search-quote'
+                placeholder='Type to search...'
+              />
+              {display ? (
+                <>
+                  <datalist id='authors'>
+                    {authors.map((author) => (
+                      <option key={author} value={author} />
+                    ))}
+                  </datalist>
+                </>
+              ) : null}
+              <button
+                className='input-group-text'
+                onClick={() => search()}
+                disabled={value ? '' : 'disabled'}
+              >
+                <FaSearch />
+              </button>
+            </div>
           </div>
           <Card>
             <Card.Header>Featured</Card.Header>

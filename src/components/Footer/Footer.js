@@ -26,7 +26,7 @@ export default function Footer({ Darkmode }) {
         }
         href='https://twitter.com/Dev_Obele'
         role='button'
-        borderColor='black'
+        bordercolor='black'
       >
         <FaTwitter />
       </a>
