@@ -20,7 +20,3 @@
 .footer > a {
   border-color: black;
 }
-
-.footer * {
-  transition: all 2s;
-}
