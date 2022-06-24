@@ -4,9 +4,15 @@ import Nav from 'react-bootstrap/Nav';
 import './NavBar.css';
 import Container from 'react-bootstrap/Container';
 
-export default function NavBar() {
+export default function NavBar({ Darkmode, SwitchMode }) {
   return (
-    <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark' fixed='top'>
+    <Navbar
+      collapseOnSelect
+      expand='lg'
+      bg={Darkmode ? 'dark' : 'light'}
+      variant={Darkmode ? 'dark' : 'light'}
+      fixed='top'
+    >
       <Container>
         <Navbar.Brand href='#welcome'>Random Quotes</Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
@@ -20,6 +26,7 @@ export default function NavBar() {
               Search Quotes
             </Nav.Link> */}
           </Nav>
+          <button onClick={SwitchMode}>Switch Mode</button>
         </Navbar.Collapse>
       </Container>
     </Navbar>
