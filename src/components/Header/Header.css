@@ -47,6 +47,11 @@ header h3 {
   margin: 0;
 } */
 
+header {
+  height: 100vh;
+  background-color: white;
+}
+
 .image-container {
   background: linear-gradient(#a500eb86, #5128c427),
     url('./photo-compressed.jpg'); /* The image used - important! */

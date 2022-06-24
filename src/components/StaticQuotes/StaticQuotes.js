@@ -5,17 +5,18 @@ import Button from 'react-bootstrap/Button';
 import Overlay from 'react-bootstrap/Overlay';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Loading from '../Loading/Loading';
-import { ReactComponent as Twitter } from './twitter.svg';
-import { ReactComponent as Whatsapp } from './whatsapp.svg';
-import { ReactComponent as Copy } from './copy.svg';
+import { ReactComponent as Twitter } from './SVG/twitter.svg';
+import { ReactComponent as Whatsapp } from './SVG/whatsapp.svg';
+import { ReactComponent as Copy } from './SVG/copy.svg';
 
 export default function StaticQuotes({
   loading,
-  nextquote,
+  nextQuote,
   zenquotes,
   count,
   bcolor,
   text,
+  Darkmode,
 }) {
   // tooltip & Copy Text
   const [show, setShow] = useState();
@@ -29,10 +30,13 @@ export default function StaticQuotes({
     }, 1300);
   };
   const target = useRef(null);
+  const bg = Darkmode ? 'dark' : 'light';
+  const ctext = Darkmode ? 'light' : 'dark';
+
   return (
     <div className='quote-body'>
       {loading ? (
-        <Card className='justify-content-center'>
+        <Card bg={bg} text={ctext} className='justify-content-center'>
           <Card.Body>
             <Loading />
           </Card.Body>
@@ -43,7 +47,7 @@ export default function StaticQuotes({
             <h1 className='text-center' id='quote-h1'>
               Quotes...Next Quotes...More Quotes
             </h1>
-            <Card id='quote-card'>
+            <Card bg={bg} text={ctext} id='quote-card'>
               <div className='position-absolute bottom-0 end-0'>
                 <Button
                   style={{
@@ -98,13 +102,13 @@ export default function StaticQuotes({
                 <Card.Text id='quote'>{zenquotes[count].q}</Card.Text>
               </Card.Body>
               <Button
-                id='next-qoute'
+                id='next-quote'
                 style={{
                   backgroundColor: bcolor,
                   color: text,
                   borderColor: text,
                 }}
-                onClick={nextquote}
+                onClick={nextQuote}
               >
                 Next Quote
               </Button>

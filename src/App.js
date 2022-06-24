@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
+import { bColor } from './Colors';
 import Header from './components/Header/Header';
 import NavBar from './components/NavBar/NavBar';
 import StaticQuotes from './components/StaticQuotes/StaticQuotes';
@@ -6,65 +7,37 @@ import Footer from './components/Footer/Footer';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
+import * as red from './UseReducer';
 
 function App() {
-  const bColor = [
-    '#f4acb7',
-    '#ea8c55',
-    '#B689FF',
-    '#FF6F6F',
-    '#8ecae6',
-    '#48bfe3',
-    '#9fffcb',
-    '#87bfff',
-    '#4cc9f0',
-    '#ff9e00',
-    '#b79ced',
-    '#c879ff',
-  ];
-  const [allAuthors, setAllAuthors] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [freeQuote, setFreeQuote] = useState();
-  const [randNum, setRandNum] = useState(
-    Math.floor(Math.random() * bColor.length) + 1
-  );
   const [zenquotes, setZenquotes] = useState();
-  const [count, setCount] = useState(0);
-  const [bcolor, setBcolor] = useState(bColor[randNum]);
+  const [bcolor, setBcolor] = useState(bColor[red.initialState.randNum]);
   const [display, setDisplay] = useState(false);
-  const [result, setResult] = useState(false);
-  const [text, setText] = useState('black');
-  const [searchvalue, setSearchvalue] = useState('');
+  const [state, dispatch] = useReducer(red.reducer, red.initialState);
 
   const nextQuote = () => {
-    setCount((state) => state + 1);
-    setRandNum(Math.floor(Math.random() * bColor.length));
-    setBcolor(bColor[randNum]);
-    document.body.style = `background: ${bColor[randNum]}`;
-  };
-  var pushAuth = (auth) => {
-    var arr = [];
-    if (auth[0].author !== undefined) {
-      auth.map((x) => arr.push(x.author));
-    }
-    if (auth[0].a !== undefined) {
-      auth.map((x) => arr.push(x.a));
-    }
-  };
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      setResult(true);
-    }
+    dispatch({ type: red.Actions.INCREMENT, payload: 1 });
+    dispatch({
+      type: red.Actions.RANDOM,
+      payload: Math.floor(Math.random() * bColor.length) + 1,
+    });
+    setBcolor(bColor[state.randNum]);
+    document.body.style = `background: ${bColor[state.randNum]}`;
   };
 
+  const SwitchMode = () => {
+    dispatch({ type: red.Actions.SWITCHMODE });
+  };
+
+  console.log(state);
   // Quotes
   useEffect(() => {
     fetch('https://type.fit/api/quotes')
       .then((res) => res.json())
       .then((json) => {
         setFreeQuote(json);
-        pushAuth(json);
-        document.body.style = `background: ${bColor[randNum]}`;
+        document.body.style = `background: ${bColor[state.randNum]}`;
       });
   }, []);
   useEffect(() => {
@@ -74,36 +47,25 @@ function App() {
       .then((res) => res.json())
       .then((json) => {
         setZenquotes(json);
-        pushAuth(json);
-        setLoading(false);
+        dispatch({ type: red.Actions.LOADING });
       });
-    return setCount(0);
-  }, [count === 48]);
+    return dispatch({ type: red.Actions.RESET });
+  }, [state.count === 48]);
   // End of Quotes
-  useEffect(() => {
-    if (!loading) {
-      setAllAuthors([freeQuote, zenquotes]);
-    }
-    return () => {
-      console.log('allAuthors');
-    };
-  }, [zenquotes]);
-  if (result) {
-    console.log(allAuthors);
-  }
 
   return (
     <>
-      <NavBar />
-      <Header />
+      <NavBar Darkmode={state.Darkmode} SwitchMode={SwitchMode} />
+      {/* <Header /> */}
       <div id='main' role='main'>
         <StaticQuotes
-          loading={loading}
+          loading={state.loading}
           nextQuote={nextQuote}
           zenquotes={zenquotes}
-          count={count}
+          count={state.count}
           bcolor={bcolor}
-          text={text}
+          text={state.text}
+          Darkmode={state.Darkmode}
         />
       </div>
       <div>
@@ -117,49 +79,28 @@ function App() {
               list='datalistOptions'
               id='search-quote'
               placeholder='Type to search...'
-              onClick={() => setDisplay(true)}
-              onChange={(e) => setSearchvalue(e.target.value)}
-              onKeyDown={handleKeyDown}
               autoComplete='none'
             />
             {display ? (
               <>
-                <datalist id='datalistOptions'>
-                  {zenquotes.map((x, i) => (
-                    <option key={i} value={x.a} />
-                  ))}
-                  {freeQuote.map((x, i) => (
-                    <option key={i} value={x.author} />
-                  ))}
-                </datalist>
+                <datalist id='datalistOptions'></datalist>
               </>
             ) : null}
           </div>
           <Card>
             <Card.Header>Featured</Card.Header>
             <ListGroup variant='flush'>
-              {!result ? (
-                <ListGroup.Item>
-                  <blockquote className='blockquote mb-0'>
-                    <p> Search in the text box and see quote from... </p>
-                    <footer className='blockquote-footer'>
-                      Someone famous
-                    </footer>
-                  </blockquote>
-                </ListGroup.Item>
-              ) : (
-                <ListGroup.Item>
-                  <blockquote className='blockquote mb-0'>
-                    <p>Working</p>
-                    <footer className='blockquote-footer'>For now!</footer>
-                  </blockquote>
-                </ListGroup.Item>
-              )}
+              <ListGroup.Item>
+                <blockquote className='blockquote mb-0'>
+                  <p> Search in the text box and see quote from... </p>
+                  <footer className='blockquote-footer'>Someone famous</footer>
+                </blockquote>
+              </ListGroup.Item>
             </ListGroup>
           </Card>
         </Container>
       </div>
-      <Footer />
+      <Footer Darkmode={state.Darkmode} />
     </>
   );
 }
