@@ -10,7 +10,6 @@ import Container from 'react-bootstrap/Container';
 import * as red from './UseReducer';
 
 function App() {
-  const [freeQuote, setFreeQuote] = useState();
   const [zenquotes, setZenquotes] = useState();
   const [bcolor, setBcolor] = useState(bColor[red.initialState.randNum]);
   const [display, setDisplay] = useState(false);
@@ -31,12 +30,17 @@ function App() {
   };
 
   console.log(state);
+
   // Quotes
   useEffect(() => {
     fetch('https://type.fit/api/quotes')
       .then((res) => res.json())
       .then((json) => {
-        setFreeQuote(json);
+        dispatch({
+          type: red.Actions.ADDQUOTES,
+          name: 'freeQuote',
+          payload: json,
+        });
         document.body.style = `background: ${bColor[state.randNum]}`;
       });
   }, []);
@@ -47,6 +51,11 @@ function App() {
       .then((res) => res.json())
       .then((json) => {
         setZenquotes(json);
+        dispatch({
+          type: red.Actions.ADDQUOTES,
+          name: 'zenquotes',
+          payload: json,
+        });
         dispatch({ type: red.Actions.LOADING });
       });
     return dispatch({ type: red.Actions.RESET });

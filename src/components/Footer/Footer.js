@@ -11,7 +11,6 @@ import {
 
 export default function Footer({ Darkmode }) {
   const color = Darkmode ? '#202020' : '#f1f1f1'; // if darkmode is true, set background color to black
-  console.log('color = ', color);
   return (
     <footer
       className='footer mt-auto text-center text-white'
