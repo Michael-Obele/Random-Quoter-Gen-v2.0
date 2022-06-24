@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useReducer } from 'react';
 import { bColor } from './Colors';
-import Header from './components/Header/Header';
 import NavBar from './components/NavBar/NavBar';
 import StaticQuotes from './components/StaticQuotes/StaticQuotes';
 import Footer from './components/Footer/Footer';
@@ -76,38 +75,6 @@ function App() {
           text={state.text}
           Darkmode={state.Darkmode}
         />
-      </div>
-      <div>
-        <Container id='searchQuotes'>
-          <div id='search'>
-            <label htmlFor='search-quote' className='form-label'>
-              Search For Quotes
-            </label>
-            <input
-              className='form-control'
-              list='datalistOptions'
-              id='search-quote'
-              placeholder='Type to search...'
-              autoComplete='none'
-            />
-            {display ? (
-              <>
-                <datalist id='datalistOptions'></datalist>
-              </>
-            ) : null}
-          </div>
-          <Card>
-            <Card.Header>Featured</Card.Header>
-            <ListGroup variant='flush'>
-              <ListGroup.Item>
-                <blockquote className='blockquote mb-0'>
-                  <p> Search in the text box and see quote from... </p>
-                  <footer className='blockquote-footer'>Someone famous</footer>
-                </blockquote>
-              </ListGroup.Item>
-            </ListGroup>
-          </Card>
-        </Container>
       </div>
       <Footer Darkmode={state.Darkmode} />
     </>
