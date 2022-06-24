@@ -12,6 +12,7 @@ export const initialState = {
 };
 export const Actions = {
   INCREMENT: 'INCREMENT',
+  DECREMENT: 'DECREMENT',
   LOADING: 'LOADING',
   RESET: 'RESET',
   RANDOM: 'RANDOM',
@@ -24,6 +25,8 @@ export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case Actions.INCREMENT:
       return { ...state, count: state.count + action.payload };
+    case Actions.DECREMENT:
+      return { ...state, count: state.count - action.payload };
     case Actions.RESET:
       return { ...state, count: 0 };
     case Actions.LOADING:

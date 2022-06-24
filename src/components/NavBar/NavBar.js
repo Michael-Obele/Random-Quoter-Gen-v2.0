@@ -6,7 +6,7 @@ import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import Container from 'react-bootstrap/Container';
 
 export default function NavBar({ Darkmode, SwitchMode }) {
-  const [isDarkMode, setDarkMode] = React.useState(true);
+  const [isDarkMode, setDarkMode] = React.useState(Darkmode);
 
   const toggleDarkMode = (checked) => {
     setDarkMode(checked);

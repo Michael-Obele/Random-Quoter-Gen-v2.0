@@ -9,19 +9,28 @@ import Container from 'react-bootstrap/Container';
 import * as red from './UseReducer';
 
 function App() {
-  const [zenquotes, setZenquotes] = useState();
   const [bcolor, setBcolor] = useState(bColor[red.initialState.randNum]);
   const [display, setDisplay] = useState(false);
   const [state, dispatch] = useReducer(red.reducer, red.initialState);
-
-  const nextQuote = () => {
-    dispatch({ type: red.Actions.INCREMENT, payload: 1 });
+  const changeColor = () => {
     dispatch({
       type: red.Actions.RANDOM,
       payload: Math.floor(Math.random() * bColor.length) + 1,
     });
     setBcolor(bColor[state.randNum]);
     document.body.style = `background: ${bColor[state.randNum]}`;
+  };
+
+  const prevQuote = () => {
+    if (state.count > 0) {
+      dispatch({ type: red.Actions.DECREMENT, payload: 1 });
+      changeColor();
+    }
+  };
+
+  const nextQuote = () => {
+    dispatch({ type: red.Actions.INCREMENT, payload: 1 });
+    changeColor();
   };
 
   const SwitchMode = () => {
@@ -49,7 +58,6 @@ function App() {
     )
       .then((res) => res.json())
       .then((json) => {
-        setZenquotes(json);
         dispatch({
           type: red.Actions.ADDQUOTES,
           name: 'zenquotes',
@@ -69,7 +77,8 @@ function App() {
         <StaticQuotes
           loading={state.loading}
           nextQuote={nextQuote}
-          zenquotes={zenquotes}
+          prevQuote={prevQuote}
+          zenquotes={state.zenquotes}
           count={state.count}
           bcolor={bcolor}
           text={state.text}

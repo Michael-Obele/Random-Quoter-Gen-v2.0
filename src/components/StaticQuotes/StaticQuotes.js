@@ -5,9 +5,11 @@ import Button from 'react-bootstrap/Button';
 import Overlay from 'react-bootstrap/Overlay';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Loading from '../Loading/Loading';
-import { ReactComponent as Twitter } from './SVG/twitter.svg';
-import { ReactComponent as Whatsapp } from './SVG/whatsapp.svg';
-import { ReactComponent as Copy } from './SVG/copy.svg';
+import { FaWhatsapp, FaTwitter, FaRegCopy } from 'react-icons/fa';
+import {
+  IoArrowForwardCircleSharp,
+  IoArrowBackCircleSharp,
+} from 'react-icons/io5';
 
 export default function StaticQuotes({
   loading,
@@ -17,6 +19,7 @@ export default function StaticQuotes({
   bcolor,
   text,
   Darkmode,
+  prevQuote,
 }) {
   // tooltip & Copy Text
   const [show, setShow] = useState();
@@ -54,7 +57,7 @@ export default function StaticQuotes({
               Quotes...Next Quotes...More Quotes
             </h1>
             <Card bg={bg} text={ctext} id='quote-card'>
-              <div className='position-absolute bottom-0 end-0'>
+              <div className='position-absolute top-0 end-0'>
                 <Button
                   style={{
                     backgroundColor: bcolor,
@@ -66,7 +69,7 @@ export default function StaticQuotes({
                   alt='share to twitter'
                   aria-label='share to twitter'
                 >
-                  <Twitter style={{ fill: text }} />
+                  <FaTwitter />
                 </Button>
                 <Button
                   style={{
@@ -79,7 +82,7 @@ export default function StaticQuotes({
                   ref={target}
                   onClick={copyText}
                 >
-                  <Copy style={{ fill: text }} />
+                  <FaRegCopy />
                 </Button>
                 <Overlay target={target.current} show={show} placement='bottom'>
                   {(props) => (
@@ -100,24 +103,39 @@ export default function StaticQuotes({
                   alt='share to whatsapp'
                   aria-label='send to whatsapp'
                 >
-                  <Whatsapp style={{ fill: text }} />
+                  <FaWhatsapp />
                 </Button>
               </div>
               <Card.Body>
                 <Card.Title id='Author'>{zenquotes[count].a}</Card.Title>
                 <Card.Text id='quote'>{zenquotes[count].q}</Card.Text>
               </Card.Body>
-              <Button
-                id='next-quote'
-                style={{
-                  backgroundColor: bcolor,
-                  color: text,
-                  borderColor: text,
-                }}
-                onClick={nextQuote}
-              >
-                Next Quote
-              </Button>
+              <div class='position-absolute bottom-0 start-0'>
+                <Button
+                  id='next-quote'
+                  style={{
+                    backgroundColor: bcolor,
+                    color: text,
+                    borderColor: text,
+                  }}
+                  onClick={prevQuote}
+                >
+                  Previous Quote
+                </Button>
+              </div>
+              <div class='position-absolute bottom-0 end-0'>
+                <Button
+                  id='next-quote'
+                  style={{
+                    backgroundColor: bcolor,
+                    color: text,
+                    borderColor: text,
+                  }}
+                  onClick={nextQuote}
+                >
+                  Next Quote
+                </Button>
+              </div>
             </Card>
           </div>
         </>
