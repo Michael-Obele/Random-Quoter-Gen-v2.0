@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import './NavBar.css';
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import Container from 'react-bootstrap/Container';
 
 export default function NavBar({ Darkmode, SwitchMode }) {
+  const [isDarkMode, setDarkMode] = React.useState(true);
+
+  const toggleDarkMode = (checked) => {
+    setDarkMode(checked);
+    SwitchMode();
+  };
   return (
     <Navbar
       collapseOnSelect
@@ -26,7 +33,12 @@ export default function NavBar({ Darkmode, SwitchMode }) {
               Search Quotes
             </Nav.Link>
           </Nav>
-          <button onClick={SwitchMode}>Switch Mode</button>
+          <DarkModeSwitch
+            style={{ marginLeft: '1rem' }}
+            checked={isDarkMode}
+            onChange={toggleDarkMode}
+            size={30}
+          />
         </Navbar.Collapse>
       </Container>
     </Navbar>
