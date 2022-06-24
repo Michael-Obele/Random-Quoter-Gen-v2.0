@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useReducer } from 'react';
 import { bColor } from './Colors';
-import Header from './components/Header/Header';
 import NavBar from './components/NavBar/NavBar';
 import StaticQuotes from './components/StaticQuotes/StaticQuotes';
 import Footer from './components/Footer/Footer';
