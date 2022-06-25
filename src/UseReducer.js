@@ -1,4 +1,4 @@
-import { LightColors, DarkColors } from './Colors';
+import { LightColors } from './Colors';
 
 export const initialState = {
   count: 0,

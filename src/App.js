@@ -67,13 +67,13 @@ function App() {
   const prevQuote = () => {
     if (state.count > 0) {
       dispatch({ type: red.Actions.DECREMENT, payload: 1 });
-      changeColor();
+      changeColor(state.Darkmode);
     }
   };
 
   const nextQuote = () => {
     dispatch({ type: red.Actions.INCREMENT, payload: 1 });
-    changeColor();
+    changeColor(state.Darkmode);
   };
 
   const SwitchMode = () => {
