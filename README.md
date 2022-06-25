@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# The Best Quote Generating App Ever
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
