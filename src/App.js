@@ -13,7 +13,7 @@ function App() {
   const [bcolor, setBcolor] = useState(bColor[red.initialState.randNum]);
   const [authors, setAuthors] = useState([]);
   const [value, setValue] = useState('');
-  const [display, setDisplay] = useState(false);
+  const [filtered, setFiltered] = useState([]);
   const [state, dispatch] = useReducer(red.reducer, red.initialState);
   /*End of States*/
   useEffect(() => {
@@ -37,7 +37,7 @@ function App() {
     if (state.Authors.length > 0) {
       var set = new Set(state.Authors);
       setAuthors(Array.from(set));
-      setDisplay(true);
+      dispatch({ type: red.Actions.DISPLAY });
     }
   }, [state.Authors]);
 
@@ -68,6 +68,14 @@ function App() {
     dispatch({ type: red.Actions.SWITCHMODE });
   };
   const search = () => {
+    var filter1 = state.freeQuote.filter((quote) => quote.author === value);
+    var filter2 = state.zenquotes.filter((quote) => quote.a === value);
+    if (filter1 || filter2) {
+      console.log(true);
+    }
+    dispatch({ type: red.Actions.SEARCH_QUOTES });
+    setFiltered(filter1);
+    console.log(filter1.concat(filter2));
     console.log(value);
   };
 
@@ -133,9 +141,9 @@ function App() {
                 value={value}
                 list='authors'
                 id='search-quote'
-                placeholder='Type to search...'
+                placeholder="Type an Authors' Name"
               />
-              {display ? (
+              {state.display ? (
                 <>
                   <datalist id='authors'>
                     {authors.map((author) => (
@@ -156,12 +164,41 @@ function App() {
           <Card>
             <Card.Header>Featured</Card.Header>
             <ListGroup variant='flush'>
-              <ListGroup.Item>
-                <blockquote className='blockquote mb-0'>
-                  <p> Search in the text box and see quote from... </p>
-                  <footer className='blockquote-footer'>Someone famous</footer>
-                </blockquote>
-              </ListGroup.Item>
+              {state.Search ? (
+                <ListGroup.Item>
+                  <blockquote className='blockquote mb-0'>
+                    {filtered.length > 0 ? (
+                      <>
+                        {filtered.map((quote) => (
+                          <>
+                            <p> {quote.text} </p>
+                            <footer className='blockquote-footer'>
+                              {quote.author}
+                            </footer>
+                          </>
+                        ))}
+                      </>
+                    ) : (
+                      <>
+                        {' '}
+                        <p> Sorry Try Again to get quote from... </p>
+                        <footer className='blockquote-footer'>
+                          Someone 'More' Famous
+                        </footer>
+                      </>
+                    )}
+                  </blockquote>
+                </ListGroup.Item>
+              ) : (
+                <ListGroup.Item>
+                  <blockquote className='blockquote mb-0'>
+                    <p> Search in the text box and see quote from... </p>
+                    <footer className='blockquote-footer'>
+                      Someone famous
+                    </footer>
+                  </blockquote>
+                </ListGroup.Item>
+              )}
             </ListGroup>
           </Card>
         </Container>

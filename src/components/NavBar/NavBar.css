@@ -1,3 +1,12 @@
 nav {
   position: sticky;
 }
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.logo {
+  width: clamp(6rem, 10vw, 10rem);
+  height: clamp(3.5rem, 50px, 6rem);
+}

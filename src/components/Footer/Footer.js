@@ -25,6 +25,8 @@ export default function Footer({ Darkmode }) {
             : 'btn btn-floating btn-lg  m-1 btn-light'
         }
         href='https://twitter.com/Dev_Obele'
+        alt='Link to my Twitter profile'
+        aria-label='Twitter Link'
         role='button'
         bordercolor='black'
       >
@@ -40,6 +42,7 @@ export default function Footer({ Darkmode }) {
         }
         href='mailto:amachree9630@gmail.com'
         role='button'
+        aria-label='Email Link'
       >
         <FaGoogle />
       </a>
@@ -53,6 +56,7 @@ export default function Footer({ Darkmode }) {
         }
         href='https://www.instagram.com/moa_concepts/'
         role='button'
+        aria-label='Instagram Link'
       >
         <FaInstagram />
       </a>
@@ -66,6 +70,7 @@ export default function Footer({ Darkmode }) {
         }
         href='https://www.linkedin.com/in/michael-amachree-1b71b8210/'
         role='button'
+        aria-label='Link to my Linkedin profile'
       >
         <FaLinkedin />
       </a>
@@ -78,6 +83,7 @@ export default function Footer({ Darkmode }) {
         }
         href='https://github.com/Michael-Obele'
         role='button'
+        aria-label='Link to my Github profile'
       >
         <FaGithub />
       </a>
@@ -90,6 +96,7 @@ export default function Footer({ Darkmode }) {
         }
         href='https://wa.me/2349069170098?text=Hey,I%20love%20your%20App!'
         role='button'
+        aria-label='Whatsapp Link'
       >
         <i className='fa fa-whatsapp'></i>
         <FaWhatsapp />

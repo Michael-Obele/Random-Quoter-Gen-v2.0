@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import { ReactComponent as Logo } from './Logo/Logo.svg';
+import './Logo/Logo.css';
 import './NavBar.css';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import Container from 'react-bootstrap/Container';
@@ -21,7 +23,10 @@ export default function NavBar({ Darkmode, SwitchMode }) {
       fixed='top'
     >
       <Container>
-        <Navbar.Brand href='#welcome'>Random Quotes</Navbar.Brand>
+        <Navbar.Brand>
+          <Logo className='logo' />
+          <span className='logo-text'>Random Quotes</span>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='me-auto'></Nav>

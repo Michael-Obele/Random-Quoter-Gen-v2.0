@@ -10,7 +10,8 @@ export const initialState = {
   Authors: [],
   freeQuote: [],
   zenquotes: [],
-  AllQuotes: [],
+  display: false,
+  Search: false,
 };
 export const Actions = {
   INCREMENT: 'INCREMENT',
@@ -22,6 +23,8 @@ export const Actions = {
   SWITCHMODE: 'SWITCHMODE',
   MERGEQUOTES: 'MERGEQUOTES',
   SETAUTHORS: 'SETAUTHORS',
+  DISPLAY: 'DISPLAY',
+  SEARCH_QUOTES: 'SEARCH_QUOTES',
 };
 
 export const reducer = (state = initialState, action) => {
@@ -46,6 +49,10 @@ export const reducer = (state = initialState, action) => {
       return { ...state, [action.name]: action.payload };
     case Actions.SETAUTHORS:
       return { ...state, Authors: state.Authors.concat(action.payload) };
+    case Actions.DISPLAY:
+      return { ...state, display: true };
+    case Actions.SEARCH_QUOTES:
+      return { ...state, Search: true };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }

@@ -19,7 +19,7 @@ code {
   margin: auto;
 }
 .form-label {
-  font-size: calc(20px + (50 - 20) * ((100vw - 300px) / (1600 - 300)));
+  font-size: calc(10px + (30 - 10) * ((100vw - 300px) / (1600 - 300)));
 }
 #searchQuotes #search {
   width: 80%;
