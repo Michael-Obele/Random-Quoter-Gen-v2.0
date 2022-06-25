@@ -14,6 +14,7 @@ function App() {
   const [authors, setAuthors] = useState([]);
   const [value, setValue] = useState('');
   const [filtered, setFiltered] = useState([]);
+  const [featured, setFeatured] = useState('');
   const [state, dispatch] = useReducer(red.reducer, red.initialState);
   /*End of States*/
   useEffect(() => {
@@ -70,18 +71,12 @@ function App() {
   const search = () => {
     var filter1 = state.freeQuote.filter((quote) => quote.author === value);
     var filter2 = state.zenquotes.filter((quote) => quote.a === value);
-    if (filter1 || filter2) {
-      console.log(true);
-    }
     dispatch({ type: red.Actions.SEARCH_QUOTES });
+    setFeatured(value);
     setFiltered(filter1);
-    console.log(filter1.concat(filter2));
-    console.log(value);
   };
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
+  useEffect(() => {}, [state]);
 
   // Quotes
   useEffect(() => {
@@ -162,7 +157,9 @@ function App() {
             </div>
           </div>
           <Card>
-            <Card.Header>Featured</Card.Header>
+            <Card.Header>
+              Featured {featured ? `by ${featured}` : ''}
+            </Card.Header>
             <ListGroup variant='flush'>
               {state.Search ? (
                 <ListGroup.Item>
