@@ -1,11 +1,10 @@
-import { bColor } from './Colors';
-var quoteArrays = [];
+import { LightColors, DarkColors } from './Colors';
 
 export const initialState = {
   count: 0,
   loading: true,
   text: 'black',
-  randNum: Math.floor(Math.random() * bColor.length),
+  randNum: Math.floor(Math.random() * LightColors.length),
   Darkmode: false,
   Authors: [],
   freeQuote: [],
@@ -36,7 +35,7 @@ export const reducer = (state = initialState, action) => {
     case Actions.RESET:
       return { ...state, count: 0 };
     case Actions.LOADING:
-      return { ...state, loading: !state.loading };
+      return { ...state, loading: false };
     case Actions.RANDOM:
       return { ...state, randNum: action.payload };
     case Actions.SWITCHMODE:
@@ -57,5 +56,3 @@ export const reducer = (state = initialState, action) => {
       throw new Error(`Unknown action type: ${action.type}`);
   }
 };
-
-console.log(quoteArrays);

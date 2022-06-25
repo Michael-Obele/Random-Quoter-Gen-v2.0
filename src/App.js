@@ -1,19 +1,20 @@
+import { Search } from './components/SearchUnit/Search';
 import React, { useEffect, useState, useReducer } from 'react';
-import { bColor } from './Colors';
-import { FaSearch } from 'react-icons/fa';
+import { LightColors, DarkColors } from './Colors';
 import NavBar from './components/NavBar/NavBar';
 import StaticQuotes from './components/StaticQuotes/StaticQuotes';
 import Footer from './components/Footer/Footer';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
 import * as red from './UseReducer';
 
 function App() {
-  const [bcolor, setBcolor] = useState(bColor[red.initialState.randNum]);
+  const background = red.initialState.Darkmode
+    ? DarkColors[red.initialState.randNum]
+    : LightColors[red.initialState.randNum];
+  const [bcolor, setBcolor] = useState(background);
   const [authors, setAuthors] = useState([]);
   const [value, setValue] = useState('');
-  const [filtered, setFiltered] = useState([]);
+  const [filteredFree, setFilteredFree] = useState([]);
+  const [filteredZen, setFilteredZen] = useState([]);
   const [featured, setFeatured] = useState('');
   const [state, dispatch] = useReducer(red.reducer, red.initialState);
   /*End of States*/
@@ -42,14 +43,24 @@ function App() {
     }
   }, [state.Authors]);
 
-  const changeColor = () => {
+  const changeColor = (DarkMode = !state.Darkmode) => {
     dispatch({
       type: red.Actions.RANDOM,
-      payload: Math.floor(Math.random() * bColor.length),
+      payload: DarkMode
+        ? Math.floor(Math.random() * DarkColors.length)
+        : Math.floor(Math.random() * LightColors.length),
     });
-    setBcolor(bColor[state.randNum]);
-    if (bColor[state.randNum] !== undefined) {
-      document.body.style = `background: ${bColor[state.randNum]}`;
+
+    if (DarkMode) {
+      if (DarkColors[state.randNum] !== undefined) {
+        setBcolor(DarkColors[state.randNum]);
+        document.body.style = `background: ${DarkColors[state.randNum]}`;
+      }
+    } else {
+      if (LightColors[state.randNum] !== undefined) {
+        setBcolor(LightColors[state.randNum]);
+        document.body.style = `background: ${LightColors[state.randNum]}`;
+      }
     }
   };
 
@@ -69,14 +80,15 @@ function App() {
     dispatch({ type: red.Actions.SWITCHMODE });
   };
   const search = () => {
-    var filter1 = state.freeQuote.filter((quote) => quote.author === value);
-    var filter2 = state.zenquotes.filter((quote) => quote.a === value);
     dispatch({ type: red.Actions.SEARCH_QUOTES });
     setFeatured(value);
-    setFiltered(filter1);
+    setFilteredFree(state.freeQuote.filter((quote) => quote.author === value));
+    setFilteredZen(state.zenquotes.filter((quote) => quote.a === value));
   };
 
-  useEffect(() => {}, [state]);
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
 
   // Quotes
   useEffect(() => {
@@ -88,7 +100,7 @@ function App() {
           name: 'freeQuote',
           payload: json,
         });
-        document.body.style = `background: ${bColor[state.randNum]}`;
+        document.body.style = `background: ${LightColors[state.randNum]}`;
       });
   }, []);
   useEffect(() => {
@@ -110,7 +122,11 @@ function App() {
 
   return (
     <>
-      <NavBar Darkmode={state.Darkmode} SwitchMode={SwitchMode} />
+      <NavBar
+        Darkmode={state.Darkmode}
+        SwitchMode={SwitchMode}
+        changeColor={changeColor}
+      />
       <div id='main' role='main'>
         <StaticQuotes
           loading={state.loading}
@@ -124,81 +140,19 @@ function App() {
         />
       </div>
       <div>
-        <Container id='searchQuotes'>
-          <div id='search'>
-            <label htmlFor='search-quote' className='form-label'>
-              Search For Quotes
-            </label>
-            <div className='input-group flex-nowrap'>
-              <input
-                className='form-control'
-                onChange={(e) => setValue(e.target.value)}
-                value={value}
-                list='authors'
-                id='search-quote'
-                placeholder="Type an Authors' Name"
-              />
-              {state.display ? (
-                <>
-                  <datalist id='authors'>
-                    {authors.map((author) => (
-                      <option key={author} value={author} />
-                    ))}
-                  </datalist>
-                </>
-              ) : null}
-              <button
-                className='input-group-text'
-                onClick={() => search()}
-                disabled={value ? '' : 'disabled'}
-              >
-                <FaSearch />
-              </button>
-            </div>
-          </div>
-          <Card>
-            <Card.Header>
-              Featured {featured ? `by ${featured}` : ''}
-            </Card.Header>
-            <ListGroup variant='flush'>
-              {state.Search ? (
-                <ListGroup.Item>
-                  <blockquote className='blockquote mb-0'>
-                    {filtered.length > 0 ? (
-                      <>
-                        {filtered.map((quote) => (
-                          <>
-                            <p> {quote.text} </p>
-                            <footer className='blockquote-footer'>
-                              {quote.author}
-                            </footer>
-                          </>
-                        ))}
-                      </>
-                    ) : (
-                      <>
-                        {' '}
-                        <p> Sorry Try Again to get quote from... </p>
-                        <footer className='blockquote-footer'>
-                          Someone 'More' Famous
-                        </footer>
-                      </>
-                    )}
-                  </blockquote>
-                </ListGroup.Item>
-              ) : (
-                <ListGroup.Item>
-                  <blockquote className='blockquote mb-0'>
-                    <p> Search in the text box and see quote from... </p>
-                    <footer className='blockquote-footer'>
-                      Someone famous
-                    </footer>
-                  </blockquote>
-                </ListGroup.Item>
-              )}
-            </ListGroup>
-          </Card>
-        </Container>
+        <Search
+          setValue={setValue}
+          value={value}
+          text={state.text}
+          search={search}
+          Darkmode={state.Darkmode}
+          Search={state.Search}
+          filteredFree={filteredFree}
+          filteredZen={filteredZen}
+          authors={authors}
+          display={state.display}
+          featured={featured}
+        />
       </div>
       <Footer Darkmode={state.Darkmode} />
     </>

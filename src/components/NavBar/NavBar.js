@@ -7,8 +7,8 @@ import './NavBar.css';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import Container from 'react-bootstrap/Container';
 
-export default function NavBar({ Darkmode, SwitchMode }) {
-  const [isDarkMode, setDarkMode] = React.useState(Darkmode);
+export default function NavBar({ Darkmode, SwitchMode, changeColor }) {
+  const [isDarkMode, setDarkMode] = useState(Darkmode);
 
   const toggleDarkMode = (checked) => {
     setDarkMode(checked);
@@ -38,12 +38,14 @@ export default function NavBar({ Darkmode, SwitchMode }) {
               Search Quotes
             </Nav.Link>
           </Nav>
-          <DarkModeSwitch
-            style={{ marginLeft: '1rem' }}
-            checked={isDarkMode}
-            onChange={toggleDarkMode}
-            size={30}
-          />
+          <div onClick={() => changeColor()}>
+            <DarkModeSwitch
+              style={{ marginLeft: '1rem' }}
+              checked={isDarkMode}
+              onChange={toggleDarkMode}
+              size={30}
+            />
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>
