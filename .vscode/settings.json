@@ -7,6 +7,8 @@
     "ldquo",
     "rdquo",
     "searchvalue",
+    "SETMODE",
+    "SETTEXT",
     "SWITCHMODE",
     "zenquotes"
   ]

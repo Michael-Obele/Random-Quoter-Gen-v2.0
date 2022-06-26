@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { ReactComponent as Logo } from './Logo/Logo.svg';
 import './Logo/Logo.css';
 import './NavBar.css';
+import { IoMdColorPalette } from 'react-icons/io';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import Container from 'react-bootstrap/Container';
 
-export default function NavBar({ Darkmode, SwitchMode, changeColor }) {
+export default function NavBar({ Darkmode, SwitchMode, changeColor, bcolor }) {
   const [isDarkMode, setDarkMode] = useState(Darkmode);
+
+  // Local Storage for Dark Mode
+  useEffect(() => {
+    const OldMode = JSON.parse(localStorage.getItem('Darkmode'));
+    if (OldMode !== null) {
+      setDarkMode(OldMode);
+    }
+  }, []);
 
   const toggleDarkMode = (checked) => {
     setDarkMode(checked);
@@ -47,6 +56,13 @@ export default function NavBar({ Darkmode, SwitchMode, changeColor }) {
             checked={isDarkMode}
             onChange={toggleDarkMode}
             size={30}
+          />
+          <IoMdColorPalette
+            style={{ marginLeft: '1rem', color: bcolor, cursor: 'pointer' }}
+            size={35}
+            onClick={() => {
+              changeColor(Darkmode);
+            }}
           />
         </Navbar.Collapse>
       </Container>

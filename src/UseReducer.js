@@ -24,6 +24,8 @@ export const Actions = {
   SETAUTHORS: 'SETAUTHORS',
   DISPLAY: 'DISPLAY',
   SEARCH_QUOTES: 'SEARCH_QUOTES',
+  SETMODE: 'SETMODE',
+  SETTEXT: 'SETTEXT',
 };
 
 export const reducer = (state = initialState, action) => {
@@ -52,6 +54,10 @@ export const reducer = (state = initialState, action) => {
       return { ...state, display: true };
     case Actions.SEARCH_QUOTES:
       return { ...state, Search: true };
+    case Actions.SETMODE:
+      return { ...state, Darkmode: action.payload };
+    case Actions.SETTEXT:
+      return { ...state, text: action.payload };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
