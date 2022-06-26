@@ -20,20 +20,20 @@ function App() {
   /*End of States*/
   useEffect(() => {
     if (!state.loading) {
-      state.freeQuote.map((quote) => {
+      state.freeQuote.map((quote) =>
         dispatch({
           type: red.Actions.SETAUTHORS,
           payload: quote.author,
-        });
-      });
-      state.zenquotes.map((quote) => {
+        })
+      );
+      state.zenquotes.map((quote) =>
         dispatch({
           type: red.Actions.SETAUTHORS,
           payload: quote.a,
-        });
-      });
+        })
+      );
     }
-  }, [state.loading]);
+  }, [state.loading, state.freeQuote, state.zenquotes]);
 
   useEffect(() => {
     if (state.Authors.length > 0) {
@@ -100,9 +100,12 @@ function App() {
           name: 'freeQuote',
           payload: json,
         });
-        document.body.style = `background: ${LightColors[state.randNum]}`;
+        document.body.style = `background: ${
+          LightColors[red.initialState.randNum]
+        }`;
       });
   }, []);
+  const reload = state.count === 48;
   useEffect(() => {
     fetch(
       'https://moa-redirect-cors.herokuapp.com/https://zenquotes.io/api/quotes/'
@@ -117,7 +120,7 @@ function App() {
         dispatch({ type: red.Actions.LOADING });
       });
     return dispatch({ type: red.Actions.RESET });
-  }, [state.count === 48]);
+  }, [reload]);
   // End of Quotes
 
   return (
