@@ -13,6 +13,7 @@ export default function NavBar({ Darkmode, SwitchMode, changeColor }) {
   const toggleDarkMode = (checked) => {
     setDarkMode(checked);
     SwitchMode();
+    changeColor();
   };
   return (
     <Navbar
@@ -24,7 +25,10 @@ export default function NavBar({ Darkmode, SwitchMode, changeColor }) {
     >
       <Container>
         <Navbar.Brand>
-          <Logo className='logo' />
+          <Logo
+            className='logo'
+            style={Darkmode ? { fill: 'white' } : { fill: 'black' }}
+          />
           <span className='logo-text'>Random Quotes</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
@@ -38,14 +42,12 @@ export default function NavBar({ Darkmode, SwitchMode, changeColor }) {
               Search Quotes
             </Nav.Link>
           </Nav>
-          <div onClick={() => changeColor()}>
-            <DarkModeSwitch
-              style={{ marginLeft: '1rem' }}
-              checked={isDarkMode}
-              onChange={toggleDarkMode}
-              size={30}
-            />
-          </div>
+          <DarkModeSwitch
+            style={{ marginLeft: '1rem' }}
+            checked={isDarkMode}
+            onChange={toggleDarkMode}
+            size={30}
+          />
         </Navbar.Collapse>
       </Container>
     </Navbar>

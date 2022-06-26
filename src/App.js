@@ -130,7 +130,7 @@ function App() {
         SwitchMode={SwitchMode}
         changeColor={changeColor}
       />
-      <div id='main' role='main'>
+      <div role='main'>
         <StaticQuotes
           loading={state.loading}
           nextQuote={nextQuote}
@@ -142,21 +142,19 @@ function App() {
           Darkmode={state.Darkmode}
         />
       </div>
-      <div>
-        <Search
-          setValue={setValue}
-          value={value}
-          text={state.text}
-          search={search}
-          Darkmode={state.Darkmode}
-          Search={state.Search}
-          filteredFree={filteredFree}
-          filteredZen={filteredZen}
-          authors={authors}
-          display={state.display}
-          featured={featured}
-        />
-      </div>
+      <Search
+        setValue={setValue}
+        value={value}
+        text={state.text}
+        search={search}
+        Darkmode={state.Darkmode}
+        Search={state.Search}
+        filteredFree={filteredFree}
+        filteredZen={filteredZen}
+        authors={authors}
+        display={state.display}
+        featured={featured}
+      />
       <Footer Darkmode={state.Darkmode} />
     </>
   );

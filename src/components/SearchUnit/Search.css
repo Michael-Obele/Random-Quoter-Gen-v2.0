@@ -1,9 +1,32 @@
+/* SearchQuotes.js */
+
 #searchQuotes {
-  padding-top: 8vh;
+  padding: 3vh 0 5vh 0;
 }
 
 .search-intro .h5 {
   font-size: 1.5rem;
   font-weight: bold;
   padding-bottom: 1rem;
+  font-size: calc(14px + (30 - 14) * ((100vw - 300px) / (1600 - 300)));
 }
+
+.search-intro .card-text {
+  font-size: calc(12px + (20 - 12) * ((100vw - 300px) / (1600 - 300)));
+}
+
+#searchQuotes {
+  width: 100%;
+  margin: auto;
+}
+.form-label {
+  font-size: calc(10px + (20 - 10) * ((100vw - 300px) / (1600 - 300)));
+}
+#searchQuotes #search {
+  width: 80%;
+  margin: auto;
+}
+#searchQuotes .card {
+  margin: 2vmax;
+}
+/* End of  SearchQuotes.js */

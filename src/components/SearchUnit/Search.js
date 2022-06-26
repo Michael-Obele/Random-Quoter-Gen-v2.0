@@ -28,12 +28,7 @@ export function Search({
 
   return (
     <Container id='searchQuotes' as='section'>
-      <Card
-        bg={bg}
-        text={ctext}
-        style={{ padding: '4px' }}
-        className='search-intro text-center'
-      >
+      <Card bg={bg} text={ctext} className='search-intro text-center'>
         <Card.Body>
           <Card.Title>Search For A Quote By The Author's Name!</Card.Title>
           <Card.Text>
