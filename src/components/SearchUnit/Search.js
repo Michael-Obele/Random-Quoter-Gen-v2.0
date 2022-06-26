@@ -1,4 +1,5 @@
 import React from 'react';
+import './Search.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
@@ -26,7 +27,26 @@ export function Search({
   };
 
   return (
-    <Container id='searchQuotes'>
+    <Container id='searchQuotes' as='section'>
+      <Card
+        bg={bg}
+        text={ctext}
+        style={{ padding: '4px' }}
+        className='search-intro text-center'
+      >
+        <Card.Body>
+          <Card.Title>Search For A Quote By The Author's Name!</Card.Title>
+          <Card.Text>
+            Search for the author's name to discover the entire quote. Simply
+            type it into the box below.
+          </Card.Text>
+          <Card.Text>
+            Do not be concerned if you do not locate a match. You may still see
+            their name, which is chosen at random. Simply keep clicking &ldquo;
+            Next Quote &rdquo;.
+          </Card.Text>
+        </Card.Body>
+      </Card>
       <div id='search'>
         <label
           style={{
@@ -58,6 +78,8 @@ export function Search({
             </>
           ) : null}
           <button
+            alt='search button'
+            aria-label='search for author'
             className='input-group-text'
             onClick={() => search()}
             disabled={value ? '' : 'disabled'}

@@ -25,7 +25,6 @@ export default function Footer({ Darkmode }) {
             : 'btn btn-floating btn-lg  m-1 btn-light'
         }
         href='https://twitter.com/Dev_Obele'
-        alt='Link to my Twitter profile'
         aria-label='Twitter Link'
         role='button'
         bordercolor='black'

@@ -31,7 +31,7 @@ export default function NavBar({ Darkmode, SwitchMode, changeColor }) {
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='me-auto'></Nav>
           <Nav>
-            <Nav.Link eventKey={1} href='#quote-h1' aria-label='quotes'>
+            <Nav.Link eventKey={1} href='#quote-body' aria-label='quotes'>
               Quotes
             </Nav.Link>
             <Nav.Link eventKey={2} href='#searchQuotes'>

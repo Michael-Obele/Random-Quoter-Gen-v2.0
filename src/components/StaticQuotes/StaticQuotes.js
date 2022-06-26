@@ -38,7 +38,7 @@ export default function StaticQuotes({
   const ctext = Darkmode ? 'light' : 'dark';
 
   return (
-    <div className='quote-body'>
+    <div className='quote-body' id='quote-body'>
       {loading ? (
         <Card bg={bg} text={ctext} className='justify-content-center'>
           <Card.Body>
@@ -47,8 +47,8 @@ export default function StaticQuotes({
         </Card>
       ) : (
         <>
-          <div className='quote-body' id='quote-body'>
-            <h1
+          <section className='quote-body'>
+            {/* <h1
               style={{
                 color: text,
               }}
@@ -56,7 +56,7 @@ export default function StaticQuotes({
               id='quote-h1'
             >
               Quotes...Next Quotes...More Quotes
-            </h1>
+            </h1> */}
             <Card bg={bg} text={ctext} id='quote-card'>
               <div className='position-absolute top-0 end-0'>
                 <Button
@@ -138,7 +138,7 @@ export default function StaticQuotes({
                 </Button>
               </div>
             </Card>
-          </div>
+          </section>
         </>
       )}
     </div>

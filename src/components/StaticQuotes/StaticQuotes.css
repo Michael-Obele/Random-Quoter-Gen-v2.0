@@ -1,4 +1,7 @@
 /* StaticQuotes.css */
+.quote-body {
+  padding-top: 3vh;
+}
 .quote-body > .card {
   margin: 10vmin auto;
   padding: 8vmin;
@@ -34,9 +37,11 @@
 .quote-body {
   margin: 5vh auto 20vh;
 }
-#quote-h1 {
+
+/* #quote-h1 {
   padding: 15vmax 0 0 0;
-}
+} */
+
 #Author {
   width: 100%;
   text-align: center;
@@ -51,5 +56,9 @@
 }
 .end-0 {
   right: 5px !important;
+}
+/* Override Bootstrap CSS */
+.btn-primary {
+  border-color: inherit;
 }
 /* End of StaticQuotes.css */
