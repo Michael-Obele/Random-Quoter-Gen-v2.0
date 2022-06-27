@@ -33,7 +33,7 @@ export default function NavBar({ Darkmode, SwitchMode, changeColor, bcolor }) {
       fixed='top'
     >
       <Container>
-        <Navbar.Brand>
+        <Navbar.Brand href='#'>
           <Logo
             className='logo'
             style={Darkmode ? { fill: 'white' } : { fill: 'black' }}
