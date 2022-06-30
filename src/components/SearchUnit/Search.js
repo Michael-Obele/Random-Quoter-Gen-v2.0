@@ -75,7 +75,7 @@ export function Search({
           <button
             alt='search button'
             aria-label='search for author'
-            className='input-group-text'
+            className={`input-group-text btn bg-${bg} text-${ctext} btn-secondary btn-lg`}
             onClick={() => search()}
             disabled={value ? '' : 'disabled'}
           >

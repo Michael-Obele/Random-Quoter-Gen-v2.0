@@ -17,7 +17,7 @@ export default function StaticQuotes({
   nextQuote,
   zenquotes,
   count,
-  bcolor,
+  bgColor,
   text,
   Darkmode,
   prevQuote,
@@ -35,13 +35,13 @@ export default function StaticQuotes({
   };
   const target = useRef(null);
   const bg = Darkmode ? 'dark' : 'light';
-  const ctext = Darkmode ? 'light' : 'dark';
+  const textColor = Darkmode ? 'light' : 'dark';
 
   return (
     <div id='quote-body'>
       {loading ? (
         <section className='quote-body'>
-          <Card bg={bg} text={ctext} className='justify-content-center'>
+          <Card bg={bg} text={textColor} className='justify-content-center'>
             <Card.Body>
               <Loading />
             </Card.Body>
@@ -50,11 +50,11 @@ export default function StaticQuotes({
       ) : (
         <>
           <section className='quote-body'>
-            <Card bg={bg} text={ctext} id='quote-card'>
+            <Card bg={bg} text={textColor} id='quote-card'>
               <div className='position-absolute top-0 end-0'>
                 <Button
                   style={{
-                    backgroundColor: bcolor,
+                    backgroundColor: bgColor,
                     color: text,
                     bordercolor: text,
                   }}
@@ -67,7 +67,7 @@ export default function StaticQuotes({
                 </Button>
                 <Button
                   style={{
-                    backgroundColor: bcolor,
+                    backgroundColor: bgColor,
                     color: text,
                     bordercolor: text,
                   }}
@@ -87,7 +87,7 @@ export default function StaticQuotes({
                 </Overlay>
                 <Button
                   style={{
-                    backgroundColor: bcolor,
+                    backgroundColor: bgColor,
                     color: text,
                     bordercolor: text,
                     fontSize: '17px',
@@ -108,7 +108,7 @@ export default function StaticQuotes({
                 <Button
                   id='next-quote'
                   style={{
-                    backgroundColor: bcolor,
+                    backgroundColor: bgColor,
                     color: text,
                     bordercolor: text,
                   }}
@@ -121,7 +121,7 @@ export default function StaticQuotes({
                 <Button
                   id='next-quote'
                   style={{
-                    backgroundColor: bcolor,
+                    backgroundColor: bgColor,
                     color: text,
                     bordercolor: text,
                   }}

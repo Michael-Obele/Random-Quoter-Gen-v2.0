@@ -8,7 +8,7 @@ import { IoMdColorPalette } from 'react-icons/io';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import Container from 'react-bootstrap/Container';
 
-export default function NavBar({ Darkmode, SwitchMode, changeColor, bcolor }) {
+export default function NavBar({ Darkmode, SwitchMode, changeColor, bgColor }) {
   const [isDarkMode, setDarkMode] = useState(Darkmode);
 
   // Local Storage for Dark Mode
@@ -58,7 +58,7 @@ export default function NavBar({ Darkmode, SwitchMode, changeColor, bcolor }) {
             size={30}
           />
           <IoMdColorPalette
-            style={{ marginLeft: '1rem', color: bcolor, cursor: 'pointer' }}
+            style={{ marginLeft: '1rem', color: bgColor, cursor: 'pointer' }}
             size={35}
             onClick={() => {
               changeColor(Darkmode);

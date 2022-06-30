@@ -29,7 +29,7 @@ function App() {
   // End of Getting Local Storage for Dark Mode
 
   // Beginning of the States
-  const [bcolor, setBcolor] = useState(background);
+  const [bgColor, setBcolor] = useState(background);
   const [authors, setAuthors] = useState([]);
   const [value, setValue] = useState('');
   const [filteredFree, setFilteredFree] = useState([]);
@@ -97,8 +97,8 @@ function App() {
 
   // Setting Background on first load
   useEffect(() => {
-    document.body.style = `background: ${bcolor}`;
-  }, [bcolor]);
+    document.body.style = `background: ${bgColor}`;
+  }, [bgColor]);
   // End of Setting Background on first load
 
   // buttons to change quotes
@@ -166,7 +166,7 @@ function App() {
         Darkmode={state.Darkmode}
         SwitchMode={SwitchMode}
         changeColor={changeColor}
-        bcolor={bcolor}
+        bgColor={bgColor}
       />
       <div role='main'>
         <StaticQuotes
@@ -175,7 +175,7 @@ function App() {
           prevQuote={prevQuote}
           zenquotes={state.zenquotes}
           count={state.count}
-          bcolor={bcolor}
+          bgColor={bgColor}
           text={state.text}
           Darkmode={state.Darkmode}
         />
