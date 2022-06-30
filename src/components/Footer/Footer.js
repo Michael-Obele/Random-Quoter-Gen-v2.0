@@ -3,7 +3,7 @@ import { FooterItems } from './FooterItems';
 
 export default function Footer({ Darkmode }) {
   const color = Darkmode ? '#202020' : '#f1f1f1'; // if darkmode is true, set background color to black
-  const text = Darkmode ? '#f1f1f1' : '#202020'; // if darkmode is true, set background color to black
+  const text = Darkmode ? '#f1f1f1' : '#202020'; // if darkmode is true, set text color to white
 
   return (
     // <!-- Footer -->
