@@ -8,16 +8,16 @@ export default function Footer({ Darkmode }) {
   return (
     // <!-- Footer -->
     <footer
-      class='text-center text-lg-start'
+      className='text-center text-lg-start'
       style={{ backgroundColor: color }}
     >
       {/* <!-- Section: Social media --> */}
       <section
-        class='d-flex justify-content-between p-3'
+        className='d-flex justify-content-between p-3'
         style={{ backgroundColor: color }}
       >
         {/* <!-- Left --> */}
-        <div class='me-5 m-3'>
+        <div className='me-5 m-3'>
           <span style={{ color: text }}>
             Get connected with me on social networks:
           </span>
@@ -33,6 +33,7 @@ export default function Footer({ Darkmode }) {
                   ? 'btn btn-floating btn-lg  m-1 btn-dark'
                   : 'btn btn-floating btn-lg  m-1 btn-light'
               }
+              key={item.name}
               target='_blank'
               style={{ borderColor: 'inherit' }}
               href={item.href}
