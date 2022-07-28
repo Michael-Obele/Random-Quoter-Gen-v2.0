@@ -32,6 +32,7 @@ function App() {
   // Beginning of the States
   const [bgColor, setBcolor] = useState(background);
   const [authors, SetAuthors] = useState([]);
+  const [searchQuotes, SearchQuotes] = useState([]);
   const [value, setValue] = useState('');
   const [filteredFree, setFilteredFree] = useState([]);
   const [filteredZen, setFilteredZen] = useState([]);
@@ -50,20 +51,22 @@ function App() {
           }),
           dispatch({
             type: red.Actions.SetQuotes,
-            payload: quote.text,
+            payload: quote.text + ' - ' + quote.author,
           })
         )
       );
-      state.zenquotes.map((quote) => {
-        dispatch({
-          type: red.Actions.SetAuthors,
-          payload: quote.a,
-        });
-        dispatch({
-          type: red.Actions.SetQuotes,
-          payload: quote.q,
-        });
-      });
+      state.zenquotes.map(
+        (quote) => (
+          dispatch({
+            type: red.Actions.SetAuthors,
+            payload: quote.a,
+          }),
+          dispatch({
+            type: red.Actions.SetQuotes,
+            payload: quote.q + ' - ' + quote.a,
+          })
+        )
+      );
     }
   }, [state.loading, state.freeQuote, state.zenquotes]);
 
@@ -153,6 +156,11 @@ function App() {
     setFeatured(value);
     setFilteredFree(state.freeQuote.filter((quote) => quote.author === value));
     setFilteredZen(state.zenquotes.filter((quote) => quote.a === value));
+    SearchQuotes(
+      state.Quotes.filter((quote) =>
+        quote.toLowerCase().includes(value.toLowerCase())
+      )
+    );
   };
   // end of buttons to change quotes
 
@@ -198,6 +206,7 @@ function App() {
       </div>
       <Search
         setValue={setValue}
+        searchQuotes={searchQuotes}
         value={value}
         text={state.text}
         searchAuthor={searchAuthor}

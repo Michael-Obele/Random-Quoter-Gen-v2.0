@@ -16,9 +16,9 @@ export function RandomQuotes({ Darkmode, freeQuote, loading }) {
         setRandNum(Math.floor(Math.random() * freeQuote.length));
         setAnimate('fadeIn');
       }, 500);
-    }, 8000);
+    }, 9000);
     return () => clearInterval(interval);
-  }, [randNum]);
+  }, [randNum, freeQuote.length]);
   return (
     <section id='Random-Quotes' className='quote-body'>
       <Card bg={bg} text={textColor} className='justify-content-center'>

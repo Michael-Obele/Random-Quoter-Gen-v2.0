@@ -13,6 +13,7 @@ export function Search({
   display,
   value,
   authors,
+  searchQuotes,
   searchAuthor,
   Search,
   Darkmode,
@@ -82,7 +83,7 @@ export function Search({
         </div>
       </div>
       <Card bg={bg} text={ctext}>
-        <Card.Header>Featured {featured ? `by ${featured}` : ''}</Card.Header>
+        <Card.Header>Featured {featured ? `by '${featured}'` : ''}</Card.Header>
         <ListGroup variant='flush'>
           {Search ? (
             <ListGroup.Item
@@ -90,7 +91,9 @@ export function Search({
                 Darkmode ? { color: 'white', backgroundColor: 'black' } : {}
               }>
               <blockquote className='blockquote mb-0'>
-                {filteredFree.length > 0 || filteredZen.length > 0 ? (
+                {filteredFree.length > 0 ||
+                filteredZen.length > 0 ||
+                searchQuotes.length > 0 ? (
                   <>
                     {filteredFree.map((quote, index) => (
                       <>
@@ -109,6 +112,16 @@ export function Search({
                           key={quote.a + quote.c + index}
                           className='blockquote-footer'>
                           {quote.a}
+                        </footer>
+                      </>
+                    ))}
+                    {searchQuotes.map((quote, index) => (
+                      <>
+                        <p key={quote + index}> {quote} </p>
+                        <footer
+                          key={quote.a + quote.c + index}
+                          className='blockquote-footer'>
+                          {featured}
                         </footer>
                       </>
                     ))}
