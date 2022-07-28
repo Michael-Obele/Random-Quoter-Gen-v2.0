@@ -147,9 +147,9 @@ function App() {
   // end of buttons to change quotes
 
   // Debugging State
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
+  // useEffect(() => {
+  //   console.log(state);
+  // }, [state]);
   // End of Debugging State
 
   // Quotes
