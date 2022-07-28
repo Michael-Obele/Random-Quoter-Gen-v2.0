@@ -10,7 +10,7 @@ import Container from 'react-bootstrap/Container';
 
 export default function NavBar({ Darkmode, SwitchMode, changeColor, bgColor }) {
   const [isDarkMode, setDarkMode] = useState(Darkmode);
-  const navList = ['Static Quotes', 'Search Quotes', 'About'];
+  const navList = ['Random Quotes', 'Static Quotes', 'Search Quotes', 'About'];
 
   // Local Storage for Dark Mode
   useEffect(() => {
@@ -44,12 +44,15 @@ export default function NavBar({ Darkmode, SwitchMode, changeColor, bgColor }) {
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='me-auto'></Nav>
           <Nav>
-            <Nav.Link eventKey={1} href='#quote-body' aria-label='quotes'>
-              Quotes
-            </Nav.Link>
-            <Nav.Link eventKey={2} href='#searchQuotes'>
-              Search Quotes
-            </Nav.Link>
+            {navList.map((item, index) => (
+              <Nav.Link
+                key={index}
+                eventKey={index}
+                href={'#' + item.split(' ').join('-')}
+                aria-label={item}>
+                {item}
+              </Nav.Link>
+            ))}
           </Nav>
           <DarkModeSwitch
             style={{ marginLeft: '1rem' }}

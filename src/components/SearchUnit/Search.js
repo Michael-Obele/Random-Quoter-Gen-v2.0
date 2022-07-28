@@ -27,7 +27,7 @@ export function Search({
   };
 
   return (
-    <Container id='searchQuotes' as='section'>
+    <Container id='Search-Quotes' as='section'>
       <Card bg={bg} text={ctext} className='search-intro text-center'>
         <Card.Body>
           <Card.Title>Search For A Quote By The Author's Name!</Card.Title>
@@ -48,8 +48,7 @@ export function Search({
             color: text,
           }}
           htmlFor='search-quote'
-          className='form-label'
-        >
+          className='form-label'>
           Search For Quotes
         </label>
         <div className='input-group flex-nowrap'>
@@ -77,8 +76,7 @@ export function Search({
             aria-label='search for author'
             className={`input-group-text btn bg-${bg} text-${ctext} btn-secondary btn-lg`}
             onClick={() => search()}
-            disabled={value ? '' : 'disabled'}
-          >
+            disabled={value ? '' : 'disabled'}>
             <FaSearch />
           </button>
         </div>
@@ -90,8 +88,7 @@ export function Search({
             <ListGroup.Item
               style={
                 Darkmode ? { color: 'white', backgroundColor: 'black' } : {}
-              }
-            >
+              }>
               <blockquote className='blockquote mb-0'>
                 {filteredFree.length > 0 || filteredZen.length > 0 ? (
                   <>
@@ -100,8 +97,7 @@ export function Search({
                         <p key={index}> {quote.text} </p>
                         <footer
                           key={quote.author + index}
-                          className='blockquote-footer'
-                        >
+                          className='blockquote-footer'>
                           {quote.author}
                         </footer>
                       </>
@@ -111,8 +107,7 @@ export function Search({
                         <p key={quote.c + index}> {quote.q} </p>
                         <footer
                           key={quote.a + quote.c + index}
-                          className='blockquote-footer'
-                        >
+                          className='blockquote-footer'>
                           {quote.a}
                         </footer>
                       </>
@@ -132,8 +127,7 @@ export function Search({
             <ListGroup.Item
               style={
                 Darkmode ? { color: 'white', backgroundColor: 'black' } : {}
-              }
-            >
+              }>
               <blockquote className='blockquote mb-0'>
                 <p> Search in the text box and see quote from... </p>
                 <footer className='blockquote-footer'>Someone famous</footer>

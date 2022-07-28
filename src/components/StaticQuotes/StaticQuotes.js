@@ -1,16 +1,16 @@
-import React, { useState, useRef } from "react";
-import "./StaticQuotes.css";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import Overlay from "react-bootstrap/Overlay";
-import Tooltip from "react-bootstrap/Tooltip";
-import Loading from "../Loading/Loading";
-import { FaTwitter, FaCopy } from "react-icons/fa";
-import { IoLogoWhatsapp } from "react-icons/io";
+import React, { useState, useRef } from 'react';
+import './StaticQuotes.css';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Overlay from 'react-bootstrap/Overlay';
+import Tooltip from 'react-bootstrap/Tooltip';
+import Loading from '../Loading/Loading';
+import { FaTwitter, FaCopy } from 'react-icons/fa';
+import { IoLogoWhatsapp } from 'react-icons/io';
 import {
   IoArrowForwardCircleSharp,
   IoArrowBackCircleSharp,
-} from "react-icons/io5";
+} from 'react-icons/io5';
 
 export default function StaticQuotes({
   loading,
@@ -34,14 +34,14 @@ export default function StaticQuotes({
     }, 1300);
   };
   const target = useRef(null);
-  const bg = Darkmode ? "dark" : "light";
-  const textColor = Darkmode ? "light" : "dark";
+  const bg = Darkmode ? 'dark' : 'light';
+  const textColor = Darkmode ? 'light' : 'dark';
 
   return (
-    <div id="quote-body">
+    <div id='Static-Quotes'>
       {loading ? (
-        <section className="quote-body">
-          <Card bg={bg} text={textColor} className="justify-content-center">
+        <section className='quote-body'>
+          <Card bg={bg} text={textColor} className='justify-content-center'>
             <Card.Body>
               <Loading />
             </Card.Body>
@@ -49,20 +49,19 @@ export default function StaticQuotes({
         </section>
       ) : (
         <>
-          <section className="quote-body">
-            <Card bg={bg} text={textColor} id="quote-card">
-              <div className="position-absolute top-0 end-0">
+          <section className='quote-body'>
+            <Card bg={bg} text={textColor} id='quote-card'>
+              <div className='position-absolute top-0 end-0'>
                 <Button
                   style={{
                     backgroundColor: bgColor,
                     color: text,
                     bordercolor: text,
                   }}
-                  target="_blank"
+                  target='_blank'
                   href={`https://twitter.com/intent/tweet?hashtags=quotes&related=Dev_Obele&text=“${zenquotes[count].q}” —${zenquotes[count].a} from https://cutt.ly/myQuote`}
-                  alt="share to twitter"
-                  aria-label="share to twitter"
-                >
+                  alt='share to twitter'
+                  aria-label='share to twitter'>
                   <FaTwitter />
                 </Button>
                 <Button
@@ -71,16 +70,15 @@ export default function StaticQuotes({
                     color: text,
                     bordercolor: text,
                   }}
-                  alt="copy to clipboard"
-                  aria-label="copy to clipboard"
+                  alt='copy to clipboard'
+                  aria-label='copy to clipboard'
                   ref={target}
-                  onClick={copyText}
-                >
+                  onClick={copyText}>
                   <FaCopy />
                 </Button>
-                <Overlay target={target.current} show={show} placement="bottom">
+                <Overlay target={target.current} show={show} placement='bottom'>
                   {(props) => (
-                    <Tooltip id="overlay-example" {...props}>
+                    <Tooltip id='overlay-example' {...props}>
                       Copied
                     </Tooltip>
                   )}
@@ -90,43 +88,40 @@ export default function StaticQuotes({
                     backgroundColor: bgColor,
                     color: text,
                     bordercolor: text,
-                    fontSize: "17px",
+                    fontSize: '17px',
                   }}
-                  target="_blank"
+                  target='_blank'
                   href={`whatsapp://send?text=“${zenquotes[count].q}”—${zenquotes[count].a}`}
-                  alt="share to whatsapp"
-                  aria-label="send to whatsapp"
-                >
+                  alt='share to whatsapp'
+                  aria-label='send to whatsapp'>
                   <IoLogoWhatsapp />
                 </Button>
               </div>
               <Card.Body>
-                <Card.Title id="Author">{zenquotes[count].a}</Card.Title>
-                <Card.Text id="quote">{zenquotes[count].q}</Card.Text>
+                <Card.Title id='Author'>{zenquotes[count].a}</Card.Title>
+                <Card.Text id='quote'>{zenquotes[count].q}</Card.Text>
               </Card.Body>
-              <div className="position-absolute bottom-0 start-0">
+              <div className='position-absolute bottom-0 start-0'>
                 <Button
-                  id="next-quote"
+                  id='next-quote'
                   style={{
                     backgroundColor: bgColor,
                     color: text,
                     bordercolor: text,
                   }}
-                  onClick={prevQuote}
-                >
+                  onClick={prevQuote}>
                   Previous Quote
                 </Button>
               </div>
-              <div className="position-absolute bottom-0 end-0">
+              <div className='position-absolute bottom-0 end-0'>
                 <Button
-                  id="next-quote"
+                  id='next-quote'
                   style={{
                     backgroundColor: bgColor,
                     color: text,
                     bordercolor: text,
                   }}
-                  onClick={nextQuote}
-                >
+                  onClick={nextQuote}>
                   Next Quote
                 </Button>
               </div>

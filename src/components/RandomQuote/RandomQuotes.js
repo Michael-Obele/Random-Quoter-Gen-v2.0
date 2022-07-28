@@ -22,7 +22,7 @@ export function RandomQuotes({ Darkmode, freeQuote, loading }) {
     return () => clearInterval(interval);
   }, [randNum]);
   return (
-    <section className='quote-body'>
+    <section id='Random-Quotes' className='quote-body'>
       <Card bg={bg} text={textColor} className='justify-content-center'>
         <Card.Body>
           {loading ? (

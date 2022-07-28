@@ -1,6 +1,6 @@
 /* SearchQuotes.js */
 
-#searchQuotes {
+#Search-Quotes {
   padding: 15vh 0;
 }
 
@@ -15,18 +15,18 @@
   font-size: calc(12px + (20 - 12) * ((100vw - 300px) / (1600 - 300)));
 }
 
-#searchQuotes {
+#Search-Quotes {
   width: 100%;
   margin: auto;
 }
 .form-label {
   font-size: calc(10px + (20 - 10) * ((100vw - 300px) / (1600 - 300)));
 }
-#searchQuotes #search {
+#Search-Quotes #search {
   width: 80%;
   margin: auto;
 }
-#searchQuotes .card {
+#Search-Quotes .card {
   margin: 2vmax;
 }
 /* End of  SearchQuotes.js */
