@@ -1,3 +1,4 @@
+import { RandomQuotes } from './components/RandomQuote/RandomQuotes';
 import { Search } from './components/SearchUnit/Search';
 import React, { useEffect, useState, useReducer } from 'react';
 import { LightColors, DarkColors } from './Colors';
@@ -146,9 +147,9 @@ function App() {
   // end of buttons to change quotes
 
   // Debugging State
-  // useEffect(() => {
-  //   console.log(state);
-  // }, [state]);
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
   // End of Debugging State
 
   // Quotes
@@ -169,6 +170,11 @@ function App() {
         bgColor={bgColor}
       />
       <div role='main'>
+        <RandomQuotes
+          Darkmode={state.Darkmode}
+          freeQuote={state.freeQuote}
+          loading={state.loading}
+        />
         <StaticQuotes
           loading={state.loading}
           nextQuote={nextQuote}

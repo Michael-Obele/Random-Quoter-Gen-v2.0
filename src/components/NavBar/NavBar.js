@@ -10,6 +10,7 @@ import Container from 'react-bootstrap/Container';
 
 export default function NavBar({ Darkmode, SwitchMode, changeColor, bgColor }) {
   const [isDarkMode, setDarkMode] = useState(Darkmode);
+  const navList = ['Static Quotes', 'Search Quotes', 'About'];
 
   // Local Storage for Dark Mode
   useEffect(() => {
@@ -30,8 +31,7 @@ export default function NavBar({ Darkmode, SwitchMode, changeColor, bgColor }) {
       expand='lg'
       bg={Darkmode ? 'dark' : 'light'}
       variant={Darkmode ? 'dark' : 'light'}
-      fixed='top'
-    >
+      fixed='top'>
       <Container>
         <Navbar.Brand href='#'>
           <Logo
