@@ -15,13 +15,13 @@ function App() {
   useEffect(() => {
     const OldMode = JSON.parse(localStorage.getItem('Darkmode'));
     if (OldMode !== null) {
-      dispatch({ type: red.Actions.SETMODE, payload: OldMode });
+      dispatch({ type: red.Actions.SetMode, payload: OldMode });
       if (OldMode) {
         setBcolor(DarkColors[red.initialState.randNum]);
-        dispatch({ type: red.Actions.SETTEXT, payload: 'white' });
+        dispatch({ type: red.Actions.SetText, payload: 'white' });
       } else {
         setBcolor(LightColors[red.initialState.randNum]);
-        dispatch({ type: red.Actions.SETTEXT, payload: 'black' });
+        dispatch({ type: red.Actions.SetText, payload: 'black' });
       }
     } else {
       localStorage.setItem('Darkmode', red.initialState.Darkmode);
@@ -31,7 +31,7 @@ function App() {
 
   // Beginning of the States
   const [bgColor, setBcolor] = useState(background);
-  const [authors, setAuthors] = useState([]);
+  const [authors, SetAuthors] = useState([]);
   const [value, setValue] = useState('');
   const [filteredFree, setFilteredFree] = useState([]);
   const [filteredZen, setFilteredZen] = useState([]);
@@ -42,25 +42,35 @@ function App() {
   // Fetching Authors
   useEffect(() => {
     if (!state.loading) {
-      state.freeQuote.map((quote) =>
-        dispatch({
-          type: red.Actions.SETAUTHORS,
-          payload: quote.author,
-        })
+      state.freeQuote.map(
+        (quote) => (
+          dispatch({
+            type: red.Actions.SetAuthors,
+            payload: quote.author,
+          }),
+          dispatch({
+            type: red.Actions.SetQuotes,
+            payload: quote.text,
+          })
+        )
       );
-      state.zenquotes.map((quote) =>
+      state.zenquotes.map((quote) => {
         dispatch({
-          type: red.Actions.SETAUTHORS,
+          type: red.Actions.SetAuthors,
           payload: quote.a,
-        })
-      );
+        });
+        dispatch({
+          type: red.Actions.SetQuotes,
+          payload: quote.q,
+        });
+      });
     }
   }, [state.loading, state.freeQuote, state.zenquotes]);
 
   useEffect(() => {
     if (state.Authors.length > 0) {
       var set = new Set(state.Authors);
-      setAuthors(Array.from(set));
+      SetAuthors(Array.from(set));
       dispatch({ type: red.Actions.DISPLAY });
     }
   }, [state.Authors]);
@@ -72,7 +82,7 @@ function App() {
       .then((res) => res.json())
       .then((json) => {
         dispatch({
-          type: red.Actions.ADDQUOTES,
+          type: red.Actions.AddQuotes,
           name: 'freeQuote',
           payload: json,
         });
@@ -86,7 +96,7 @@ function App() {
       .then((res) => res.json())
       .then((json) => {
         dispatch({
-          type: red.Actions.ADDQUOTES,
+          type: red.Actions.AddQuotes,
           name: 'zenquotes',
           payload: json,
         });
@@ -136,10 +146,10 @@ function App() {
   };
 
   const SwitchMode = () => {
-    dispatch({ type: red.Actions.SWITCHMODE });
+    dispatch({ type: red.Actions.SwitchMode });
   };
-  const search = () => {
-    dispatch({ type: red.Actions.SEARCH_QUOTES });
+  const searchAuthor = () => {
+    dispatch({ type: red.Actions.SearchQuotes });
     setFeatured(value);
     setFilteredFree(state.freeQuote.filter((quote) => quote.author === value));
     setFilteredZen(state.zenquotes.filter((quote) => quote.a === value));
@@ -147,9 +157,9 @@ function App() {
   // end of buttons to change quotes
 
   // Debugging State
-  // useEffect(() => {
-  //   console.log(state);
-  // }, [state]);
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
   // End of Debugging State
 
   // Quotes
@@ -190,7 +200,7 @@ function App() {
         setValue={setValue}
         value={value}
         text={state.text}
-        search={search}
+        searchAuthor={searchAuthor}
         Darkmode={state.Darkmode}
         Search={state.Search}
         filteredFree={filteredFree}

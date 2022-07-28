@@ -13,7 +13,7 @@ export function Search({
   display,
   value,
   authors,
-  search,
+  searchAuthor,
   Search,
   Darkmode,
   featured,
@@ -22,13 +22,13 @@ export function Search({
   const ctext = Darkmode ? 'white' : 'dark';
   const onKeyDownHandler = (e) => {
     if (e.keyCode === 13) {
-      search();
+      searchAuthor();
     }
   };
 
   return (
     <Container id='Search-Quotes' as='section'>
-      <Card bg={bg} text={ctext} className='search-intro text-center'>
+      <Card bg={bg} text={ctext} className='searchAuthor-intro text-center'>
         <Card.Body>
           <Card.Title>Search For A Quote By The Author's Name!</Card.Title>
           <Card.Text>
@@ -42,12 +42,12 @@ export function Search({
           </Card.Text>
         </Card.Body>
       </Card>
-      <div id='search'>
+      <div id='searchAuthor'>
         <label
           style={{
             color: text,
           }}
-          htmlFor='search-quote'
+          htmlFor='searchAuthor-quote'
           className='form-label'>
           Search For Quotes
         </label>
@@ -59,7 +59,7 @@ export function Search({
             style={Darkmode ? { color: 'white', backgroundColor: 'black' } : {}}
             onKeyDown={(e) => onKeyDownHandler(e)}
             list='authors'
-            id='search-quote'
+            id='searchAuthor-quote'
             placeholder="Type an Authors' Name"
           />
           {display ? (
@@ -72,10 +72,10 @@ export function Search({
             </>
           ) : null}
           <button
-            alt='search button'
-            aria-label='search for author'
+            alt='searchAuthor button'
+            aria-label='searchAuthor for author'
             className={`input-group-text btn bg-${bg} text-${ctext} btn-secondary btn-lg`}
-            onClick={() => search()}
+            onClick={() => searchAuthor()}
             disabled={value ? '' : 'disabled'}>
             <FaSearch />
           </button>

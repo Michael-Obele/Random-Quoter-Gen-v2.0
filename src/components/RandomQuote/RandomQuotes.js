@@ -6,9 +6,7 @@ import './animate.css';
 export function RandomQuotes({ Darkmode, freeQuote, loading }) {
   const bg = Darkmode ? 'dark' : 'light';
   const textColor = Darkmode ? 'light' : 'dark';
-  const [randNum, setRandNum] = useState(
-    Math.floor(Math.random() * freeQuote.length)
-  );
+  const [randNum, setRandNum] = useState(Math.floor(Math.random() * 1643));
   const [animate, setAnimate] = useState('fadeIn');
 
   useEffect(() => {
@@ -17,7 +15,7 @@ export function RandomQuotes({ Darkmode, freeQuote, loading }) {
       setTimeout(() => {
         setRandNum(Math.floor(Math.random() * freeQuote.length));
         setAnimate('fadeIn');
-      }, 1000);
+      }, 500);
     }, 8000);
     return () => clearInterval(interval);
   }, [randNum]);

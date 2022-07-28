@@ -7,6 +7,7 @@ export const initialState = {
   randNum: Math.floor(Math.random() * LightColors.length),
   Darkmode: false,
   Authors: [],
+  Quotes: [],
   freeQuote: [],
   zenquotes: [],
   display: false,
@@ -18,14 +19,15 @@ export const Actions = {
   LOADING: 'LOADING',
   RESET: 'RESET',
   RANDOM: 'RANDOM',
-  ADDQUOTES: 'ADDQUOTES',
-  SWITCHMODE: 'SWITCHMODE',
-  MERGEQUOTES: 'MERGEQUOTES',
-  SETAUTHORS: 'SETAUTHORS',
+  AddQuotes: 'AddQuotes',
+  SwitchMode: 'SwitchMode',
+  MergeQuotes: 'MergeQuotes',
+  SetAuthors: 'SetAuthors',
+  SetQuotes: 'SetQuotes',
   DISPLAY: 'DISPLAY',
-  SEARCH_QUOTES: 'SEARCH_QUOTES',
-  SETMODE: 'SETMODE',
-  SETTEXT: 'SETTEXT',
+  SearchQuotes: 'SearchQuotes',
+  SetMode: 'SetMode',
+  SetText: 'SetText',
 };
 
 export const reducer = (state = initialState, action) => {
@@ -40,23 +42,25 @@ export const reducer = (state = initialState, action) => {
       return { ...state, loading: false };
     case Actions.RANDOM:
       return { ...state, randNum: action.payload };
-    case Actions.SWITCHMODE:
+    case Actions.SwitchMode:
       return {
         ...state,
         Darkmode: !state.Darkmode,
         text: state.Darkmode ? 'black' : 'white',
       };
-    case Actions.ADDQUOTES:
+    case Actions.AddQuotes:
       return { ...state, [action.name]: action.payload };
-    case Actions.SETAUTHORS:
+    case Actions.SetAuthors:
       return { ...state, Authors: state.Authors.concat(action.payload) };
+    case Actions.SetQuotes:
+      return { ...state, Quotes: state.Quotes.concat(action.payload) };
     case Actions.DISPLAY:
       return { ...state, display: true };
-    case Actions.SEARCH_QUOTES:
+    case Actions.SearchQuotes:
       return { ...state, Search: true };
-    case Actions.SETMODE:
+    case Actions.SetMode:
       return { ...state, Darkmode: action.payload };
-    case Actions.SETTEXT:
+    case Actions.SetText:
       return { ...state, text: action.payload };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
