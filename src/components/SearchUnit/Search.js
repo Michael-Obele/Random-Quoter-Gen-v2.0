@@ -31,15 +31,20 @@ export function Search({
     <Container id='Search-Quotes' as='section'>
       <Card bg={bg} text={ctext} className='searchAuthor-intro text-center'>
         <Card.Body>
-          <Card.Title>Search For A Quote By The Author's Name!</Card.Title>
-          <Card.Text>
-            Search for the author's name to discover the entire quote. Simply
-            type it into the box below.
+          <Card.Title className='title'>
+            Search For A Quote By The Author's Name!
+          </Card.Title>
+          <Card.Text className='text'>
+            To find the whole quote, look up the author's name. Simply enter it
+            into the text box below.
           </Card.Text>
-          <Card.Text>
-            Do not be concerned if you do not locate a match. You may still see
-            their name, which is chosen at random. Simply keep clicking &ldquo;
-            Next Quote &rdquo;.
+          <Card.Text className='text'>
+            You can also search for a word to get all quotes associated with it.
+          </Card.Text>
+          <Card.Text className='text'>
+            Don't be concerned if you don't find a match. You might still see
+            their name or that word chosen at random. Continue by clicking
+            &ldquo; Next Quote &rdquo;.
           </Card.Text>
         </Card.Body>
       </Card>

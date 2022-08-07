@@ -7,10 +7,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import Loading from '../Loading/Loading';
 import { FaTwitter, FaCopy } from 'react-icons/fa';
 import { IoLogoWhatsapp } from 'react-icons/io';
-import {
-  IoArrowForwardCircleSharp,
-  IoArrowBackCircleSharp,
-} from 'react-icons/io5';
+import { MdArrowForwardIos, MdArrowBackIos } from 'react-icons/md';
 
 export default function StaticQuotes({
   loading,
@@ -59,7 +56,7 @@ export default function StaticQuotes({
                     bordercolor: text,
                   }}
                   target='_blank'
-                  href={`https://twitter.com/intent/tweet?hashtags=quotes&related=Dev_Obele&text=“${zenquotes[count].q}” —${zenquotes[count].a} from https://cutt.ly/myQuote`}
+                  href={`https://twitter.com/intent/tweet? hashtags=quote&related=Dev_Obele&text=“${zenquotes[count].q}” —${zenquotes[count].a} from https://cutt.ly/myQuote`}
                   alt='share to twitter'
                   aria-label='share to twitter'>
                   <FaTwitter />
@@ -78,7 +75,15 @@ export default function StaticQuotes({
                 </Button>
                 <Overlay target={target.current} show={show} placement='bottom'>
                   {(props) => (
-                    <Tooltip id='overlay-example' {...props}>
+                    <Tooltip
+                      {...props}
+                      style={{
+                        position: 'absolute',
+                        padding: '2px 10px',
+                        color: 'white',
+                        borderRadius: 3,
+                        ...props.style,
+                      }}>
                       Copied
                     </Tooltip>
                   )}
@@ -110,7 +115,10 @@ export default function StaticQuotes({
                     bordercolor: text,
                   }}
                   onClick={prevQuote}>
-                  Previous Quote
+                  <span className='d-none d-md-block'>Previous Quote</span>
+                  <span className='d-block d-md-none'>
+                    <MdArrowBackIos />
+                  </span>
                 </Button>
               </div>
               <div className='position-absolute bottom-0 end-0'>
@@ -122,7 +130,10 @@ export default function StaticQuotes({
                     bordercolor: text,
                   }}
                   onClick={nextQuote}>
-                  Next Quote
+                  <span className='d-none d-md-block'>Next Quote</span>
+                  <span className='d-block d-md-none'>
+                    <MdArrowForwardIos />
+                  </span>
                 </Button>
               </div>
             </Card>

@@ -192,6 +192,8 @@ function App() {
           Darkmode={state.Darkmode}
           freeQuote={state.freeQuote}
           loading={state.loading}
+          bgColor={bgColor}
+          text={state.text}
         />
         <StaticQuotes
           loading={state.loading}

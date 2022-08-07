@@ -1,0 +1,3 @@
+#Random-Quotes {
+  margin-top: calc(15vh + (5 - 15) * ((100vw - 300px) / (1600 - 300)));
+}
