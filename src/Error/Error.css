@@ -1,0 +1,40 @@
+/* StaticQuotes.css */
+.error {
+  padding: 3vh 0;
+}
+.error > .card {
+  margin: 10vmin auto;
+  padding: 8vmin 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: max-content;
+  border-radius: 9px;
+  box-shadow: 14px 19px 10px 0px #00000040;
+  -webkit-box-shadow: 14px 19px 10px 0px #00000040;
+  -moz-box-shadow: 14px 19px 10px 0px #00000040;
+}
+.error .h5 {
+  font-size: calc(45px + (120 - 45) * ((100vw - 300px) / (1600 - 300)));
+}
+.error .card-text {
+  font-size: calc(25px + (40 - 25) * ((100vw - 300px) / (1600 - 300)));
+}
+.card * {
+  transition: color 2s;
+  transition: background-color 2s;
+}
+.h5 {
+  margin: auto 2vmin 0 0;
+}
+
+.error {
+  margin: 5vh auto 20vh;
+}
+
+/* Override Bootstrap CSS */
+.btn-primary {
+  border-color: inherit;
+}
+/* End of StaticQuotes.css */

@@ -5,6 +5,8 @@ import { LightColors, DarkColors } from './Colors';
 import NavBar from './components/NavBar/NavBar';
 import StaticQuotes from './components/StaticQuotes/StaticQuotes';
 import Footer from './components/Footer/Footer';
+import { ErrorBoundary } from 'react-error-boundary';
+import Error from './Error/Error';
 import * as red from './UseReducer';
 
 function App() {
@@ -188,23 +190,41 @@ function App() {
         bgColor={bgColor}
       />
       <div role='main'>
-        <RandomQuotes
-          Darkmode={state.Darkmode}
-          freeQuote={state.freeQuote}
-          loading={state.loading}
-          bgColor={bgColor}
-          text={state.text}
-        />
-        <StaticQuotes
-          loading={state.loading}
-          nextQuote={nextQuote}
-          prevQuote={prevQuote}
-          zenquotes={state.zenquotes}
-          count={state.count}
-          bgColor={bgColor}
-          text={state.text}
-          Darkmode={state.Darkmode}
-        />
+        <ErrorBoundary
+          fallback={
+            <Error
+              bgColor={bgColor}
+              text={state.text}
+              Darkmode={state.Darkmode}
+            />
+          }>
+          <RandomQuotes
+            Darkmode={state.Darkmode}
+            freeQuote={state.freeQuote}
+            loading={state.loading}
+            bgColor={bgColor}
+            text={state.text}
+          />
+        </ErrorBoundary>
+        <ErrorBoundary
+          fallback={
+            <Error
+              bgColor={bgColor}
+              text={state.text}
+              Darkmode={state.Darkmode}
+            />
+          }>
+          <StaticQuotes
+            loading={state.loading}
+            nextQuote={nextQuote}
+            prevQuote={prevQuote}
+            zenquotes={state.zenquotes}
+            count={state.count}
+            bgColor={bgColor}
+            text={state.text}
+            Darkmode={state.Darkmode}
+          />
+        </ErrorBoundary>
       </div>
       <Search
         setValue={setValue}
