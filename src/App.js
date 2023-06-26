@@ -207,25 +207,25 @@ function App() {
             text={state.text}
           />
         </ErrorBoundary>
-        <ErrorBoundary
-          fallback={
-            <Error
-              bgColor={bgColor}
-              text={state.text}
-              Darkmode={state.Darkmode}
-            />
-          }>
-          <StaticQuotes
-            loading={state.loading}
-            nextQuote={nextQuote}
-            prevQuote={prevQuote}
-            zenquotes={state.zenquotes}
-            count={state.count}
-            bgColor={bgColor}
-            text={state.text}
-            Darkmode={state.Darkmode}
-          />
-        </ErrorBoundary>
+        // <ErrorBoundary
+        //   fallback={
+        //     <Error
+        //       bgColor={bgColor}
+        //       text={state.text}
+        //       Darkmode={state.Darkmode}
+        //     />
+        //   }>
+        //   <StaticQuotes
+        //     loading={state.loading}
+        //     nextQuote={nextQuote}
+        //     prevQuote={prevQuote}
+        //     zenquotes={state.zenquotes}
+        //     count={state.count}
+        //     bgColor={bgColor}
+        //     text={state.text}
+        //     Darkmode={state.Darkmode}
+        //   />
+        // </ErrorBoundary>
       </div>
       <Search
         setValue={setValue}
