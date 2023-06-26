@@ -96,7 +96,7 @@ function App() {
   const reload = state.count === 48;
   useEffect(() => {
     fetch(
-      'https://moa-redirect-cors.herokuapp.com/https://zenquotes.io/api/quotes/'
+      'https://zenquotes.io/api/quotes/'
     )
       .then((res) => res.json())
       .then((json) => {
