@@ -93,22 +93,22 @@ function App() {
         });
       });
   }, []);
-  const reload = state.count === 48;
-  useEffect(() => {
-    fetch(
-      'https://moa-redirect-cors.herokuapp.com/https://zenquotes.io/api/quotes/'
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        dispatch({
-          type: red.Actions.AddQuotes,
-          name: 'zenquotes',
-          payload: json,
-        });
-        dispatch({ type: red.Actions.LOADING });
-      });
-    return dispatch({ type: red.Actions.RESET });
-  }, [reload]);
+  // const reload = state.count === 48;
+  // useEffect(() => {
+  //   fetch(
+  //     'https://moa-redirect-cors.herokuapp.com/https://zenquotes.io/api/quotes/'
+  //   )
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       dispatch({
+  //         type: red.Actions.AddQuotes,
+  //         name: 'zenquotes',
+  //         payload: json,
+  //       });
+  //       dispatch({ type: red.Actions.LOADING });
+  //     });
+  //   return dispatch({ type: red.Actions.RESET });
+  // }, [reload]);
   // End of Fetching quotes
 
   // Setting Background on first load
