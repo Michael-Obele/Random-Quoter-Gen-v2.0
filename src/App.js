@@ -93,22 +93,22 @@ function App() {
         });
       });
   }, []);
-  // const reload = state.count === 48;
-  // useEffect(() => {
-  //   fetch(
-  //     'https://moa-redirect-cors.herokuapp.com/https://zenquotes.io/api/quotes/'
-  //   )
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       dispatch({
-  //         type: red.Actions.AddQuotes,
-  //         name: 'zenquotes',
-  //         payload: json,
-  //       });
-  //       dispatch({ type: red.Actions.LOADING });
-  //     });
-  //   return dispatch({ type: red.Actions.RESET });
-  // }, [reload]);
+  const reload = state.count === 48;
+  useEffect(() => {
+    fetch(
+      'https://zenquotes.io/api/quotes/'
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch({
+          type: red.Actions.AddQuotes,
+          name: 'zenquotes',
+          payload: json,
+        });
+        dispatch({ type: red.Actions.LOADING });
+      });
+    return dispatch({ type: red.Actions.RESET });
+  }, [reload]);
 
   // End of Fetching quotes
 
@@ -207,25 +207,25 @@ function App() {
             text={state.text}
           />
         </ErrorBoundary>
-        // <ErrorBoundary
-        //   fallback={
-        //     <Error
-        //       bgColor={bgColor}
-        //       text={state.text}
-        //       Darkmode={state.Darkmode}
-        //     />
-        //   }>
-        //   <StaticQuotes
-        //     loading={state.loading}
-        //     nextQuote={nextQuote}
-        //     prevQuote={prevQuote}
-        //     zenquotes={state.zenquotes}
-        //     count={state.count}
-        //     bgColor={bgColor}
-        //     text={state.text}
-        //     Darkmode={state.Darkmode}
-        //   />
-        // </ErrorBoundary>
+        <ErrorBoundary
+          fallback={
+            <Error
+              bgColor={bgColor}
+              text={state.text}
+              Darkmode={state.Darkmode}
+            />
+          }>
+          // <StaticQuotes
+          //   loading={state.loading}
+          //   nextQuote={nextQuote}
+          //   prevQuote={prevQuote}
+          //   zenquotes={state.zenquotes}
+          //   count={state.count}
+          //   bgColor={bgColor}
+          //   text={state.text}
+          //   Darkmode={state.Darkmode}
+          />
+        </ErrorBoundary>
       </div>
       <Search
         setValue={setValue}
