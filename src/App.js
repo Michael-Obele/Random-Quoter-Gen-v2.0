@@ -109,6 +109,7 @@ function App() {
   //     });
   //   return dispatch({ type: red.Actions.RESET });
   // }, [reload]);
+
   // End of Fetching quotes
 
   // Setting Background on first load
