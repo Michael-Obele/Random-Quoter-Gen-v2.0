@@ -1,4 +1,6 @@
-# The Best Quote Generating App Ever! :blush:
+# Used to be the ~Best Quote Generating App Ever!~  :blush: 
+
+
 
 ### This project was built with React and React-Bootstrap.
 
